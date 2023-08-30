@@ -2,15 +2,16 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Homepage from '../views/HomeIndex.vue'
 import ProductItem from '@/components/ProductItem.vue'
-import Shop from '../views/ShopIndex.vue'
+import ShopIndex from '../views/ShopIndex.vue'
 import ProductDetail from "@/views/ProductDetail.vue";
+import ContactIndex from "../views/ContactIndex.vue"
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/homeIndex',
       component: Homepage
     },
     {
@@ -19,15 +20,20 @@ export default new Router({
       component: ProductItem
     },
     {
-      path: "/product/:id",
+      path: "/shopDetail",
       name: "ProductDetail",
       component: ProductDetail,
       props: true
     },
     {
-      path: '/shop',
-      component: Shop,
+      path: "/shopIndex",
+      component: ShopIndex,
       name: 'Shop'
+    },
+    {
+      path: "/ContactIndex",
+      component: ContactIndex,
+      name: 'Contact'
     }
   ]
 })

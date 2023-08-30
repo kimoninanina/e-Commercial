@@ -4,10 +4,10 @@
       <img src="../assets/icon/Frame.png" alt="Logo" />
     </div>
     <div class="nav-links">
-      <router-link to="/">Home</router-link>
-      <router-link to="/shop">Shop</router-link>
-      <router-link to="/about">About</router-link>
-      <router-link to="/contact">Contact</router-link>
+      <span @click="link('/homeIndex')">Home</span>
+      <span @click="link('/shopIndex')">Shop</span>
+      <span>About</span>
+      <span @click="link('/contactIndex')">Concat</span>
     </div>
     <div class="user-actions">
       <router-link to="/login"
@@ -22,7 +22,16 @@
     </div>
   </div>
 </template>
-
+<script>
+export default {
+  methods: {
+    link(path) {
+      if (this.$route.path === path) return;
+      this.$router.push(path);
+    },
+  },
+};
+</script>
 <style scoped>
 .navbar-container {
   display: flex;

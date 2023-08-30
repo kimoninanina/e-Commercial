@@ -1,85 +1,63 @@
 <template>
-  <div>
-    <div class="container">
-      <div class="shop-index">
-        <BreadcrumbNav :path="path" end="Asgaard sofa" />
-        <div class="index__good">
-          <div class="carousel-nav">
-            <aside>
-              <section v-for="(image, index) in asideImages" :key="index">
-                <img
-                  :src="image"
-                  alt="Carousel Image"
-                  @click="changeMainImage(image)"
-                />
-              </section>
-            </aside>
+  <div class="shop-index">
+    <div class="index__breadcrumb">
+      <BreadcrumbNav :path="path" end="Asgaard sofa" />
+    </div>
+
+    <div class="index__good">
+      <CarouselNav :data="calouselList" />
+
+      <div class="good__info">
+        <h4>Asgaard sofa</h4>
+        <div class="info__price">Rs. 250,000.00</div>
+
+        <p>
+          Setting the bar as one of the loudest speakers in its class, the
+          Kilburn is a compact, stout-hearted hero with a well-balanced audio
+          which boasts a clear midrange and extended highs for a sound.
+        </p>
+
+        <h5>Size</h5>
+        <ButtonGroup
+          class="button-group"
+          v-model="sizeActive"
+          :options="sizeList"
+        />
+        <h5>Color</h5>
+
+        <div class="info__colors">
+          <button :style="{ background: '#816DFA' }"></button>
+          <button :style="{ background: '#000' }"></button>
+          <button :style="{ background: '#B88E2F' }"></button>
+        </div>
+
+        <div class="info__count">
+          <NumberCounter v-model="num" />
+          <button>Add To Cart</button>
+        </div>
+
+        <div class="info__describe">
+          <div class="describe__item">
+            <div class="item__name">SKU</div>
+            <div class="item__value">SS001</div>
           </div>
-          <main>
-            <img :src="mainImage" alt="Main Image" />
-          </main>
-          <div class="good__info">
-            <h1>Asgaard sofa</h1>
-            <div class="info__price">
-              Rs. 250,000.00
-            </div>
-            <p class="product_details">
-              Setting the bar as one of the loudest speakers in its class, the
-              Kilburn is a compact, stout-hearted hero with a well-balanced
-              audio which boasts a clear midrange and extended highs for a
-              sound.
-            </p>
-            <div class="product__info">
-              <div class="info__size">
-                <p>Size:</p>
-                <div class="size__buttons">
-                  <button
-                    v-for="size in sizes"
-                    :key="size"
-                    :class="{ active: selectedSize === size }"
-                    @click="toggleSize(size)"
-                    class="color-button"
-                  >
-                    {{ size }}
-                  </button>
-                </div>
-              </div>
-              <div class="info__color">
-                <p>Color:</p>
-                <div class="color__buttons">
-                  <button
-                    v-for="color in colors"
-                    :key="color"
-                    :class="{ active: selectedColor === color }"
-                    :style="{ backgroundColor: color }"
-                    @click="toggleColor(color)"
-                    class="color-button"
-                  ></button>
-                </div>
-              </div>
-            </div>
-            <div class="info__count">
-              <div class="quantity__controls">
-                <button @click="decreaseQuantity">-</button>
-                <span>{{ quantity }}</span>
-                <button @click="increaseQuantity">+</button>
-              </div>
-              <button class="add-to-cart-button" @click="addToCart">
-                Add to Cart
-              </button>
-            </div>
 
-            <div class="info__describe">
-              SKU: SS001<br />
-              Category: Sofas<br />
-              Tags: Sofa, Chair, Home, Shop<br />
+          <div class="describe__item">
+            <div class="item__name">Category</div>
+            <div class="item__value">Sofas</div>
+          </div>
 
-              <div class="icon-container">
-                Share:
-                <img class="icon" src="../assets/icon/x.png" alt="Icon" />
-                <img class="icon" src="../assets/icon/x.png" alt="Icon" />
-                <img class="icon" src="../assets/icon/x.png" alt="Icon" />
-              </div>
+          <div class="describe__item">
+            <div class="item__name">Tags</div>
+            <div class="item__value">Sofa, Chair, Home, Shop</div>
+          </div>
+
+          <div class="describe__item">
+            <div class="item__name">Share</div>
+            <div class="item__value">
+              <img src="@/assets/shop-detail/icon-facebook.png" alt="" />
+              <img src="@/assets/shop-detail/icon-linkedin.png" alt="" />
+              <img src="@/assets/shop-detail/icon-twitter.png" alt="" />
             </div>
           </div>
         </div>
@@ -89,230 +67,174 @@
 </template>
 
 <script>
-import BreadcrumbNav from '@/components/BreadcrumbNav.vue'
+import BreadcrumbNav from "@/components/BreadcrumbNav.vue";
+import CarouselNav from "@/components/CarouselNav.vue";
+
+import Carousel1 from "@/assets/shop-detail/carousel1.png";
+import Carousel2 from "@/assets/shop-detail/carousel2.png";
+import Carousel3 from "@/assets/shop-detail/carousel3.png";
+import Carousel4 from "@/assets/shop-detail/carousel4.png";
+
+import ButtonGroup from "@/components/ButtonGroup.vue";
+import NumberCounter from "@/components/NumberCounter.vue";
+
 export default {
-  components: { BreadcrumbNav },
+  components: { BreadcrumbNav, CarouselNav, NumberCounter, ButtonGroup },
   data() {
     return {
-      quantity: 1,
-      backgroundImage: require("@/assets/Backgrounp.jpg"),
-      sizes: ["S", "M", "L"],
-      selectedSize: null,
-      colors: ["red", "blue", "green"],
-
-      asideImages: [
-        require("@/assets/detail1.png"),
-        require("@/assets/details4.png"),
-        require("@/assets/details3.png")
+      path: [
+        { name: "Home", path: "/homeIndex" },
+        { name: "Shop", path: "/shopIndex" },
       ],
-      mainImage: require("@/assets/details2.png"),
-      mainImageWidth: 0, // Initialize mainImage width
-      mainImageHeight: 0 // Initialize mainImage height
+      calouselList: [Carousel1, Carousel2, Carousel3, Carousel4],
+      sizeActive: "1",
+      sizeList: [
+        { name: "L", value: "1" },
+        { name: "XL", value: "2" },
+        { name: "XS", value: "3" },
+      ],
+      num: 1,
     };
   },
-  methods: {
-    changeMainImage(image, width, height) {
-      this.mainImage = image;
-      this.mainImageWidth = width;
-      this.mainImageHeight = height;
-    }
-  },
-  toggleSize(size) {
-    if (this.selectedSize === size) {
-      this.selectedSize = null; // 如果已经选中，再次点击取消选中
-    } else {
-      this.selectedSize = size; // 否则选中该尺寸
-    }
-  },
-  toggleColor(color) {
-    if (this.selectedColor === color) {
-      this.selectedColor = null;
-    } else {
-      this.selectedColor = color;
-    }
-  },
-  increaseQuantity() {
-      this.quantity++;
-    },
-    decreaseQuantity() {
-      if (this.quantity > 1) {
-        this.quantity--;
-      }
-    },
-    addToCart() {
-      // 将商品添加到购物车的逻辑
-    }
-}
+};
 </script>
 
-<style scoped>
-.container {
+<style lang="scss" scoped>
+.shop-index {
   background-color: white;
-}
-.breadcrumb-container {
-  display: flex;
-  align-items: center;
-  background-image: url("../assets/RectangleDeatils.png");
-  background-size: cover;
-  height: 100px;
-}
+  .index__breadcrumb {
+    padding: 0 102px;
+    height: 100px;
+    background: #f9f1e7;
+    display: flex;
+    align-items: center;
+  }
 
-.breadcrumb-text {
-  display: flex;
-  align-items: center;
-  margin-left: 30px;
-}
+  .index__good {
+    margin-top: 42px;
+    padding: 0 102px;
+    display: flex;
 
-.breadcrumb-links router-link {
-  margin-right: 30px !important; /* 右侧间距 */
-}
+    .good__info {
+      margin-left: 106px;
+      width: 424px;
 
-.end {
-  margin-left: 24px;
-  padding-left: 34px;
-  color: rgb(0, 0, 0);
-  border-left: 2px solid rgb(159, 159, 159);
-}
+      h4 {
+        color: #000;
+        font-weight: bold;
+        font-size: 42px;
+        line-height: 62px;
+        text-align: left;
+        margin-bottom: 0px;
+      }
 
-.index__good {
-  margin-top: 42px;
-  display: flex;
-  align-items: flex-start;
-  margin-right: -20px;
-}
+      .info__price {
+        color: #9f9f9f;
+        font-size: 24px;
+        line-height: 36px;
+        text-align: left;
+      }
 
-.good__info h1 {
-  color: rgb(0, 0, 0);
-  font-weight: 700;
-  font-size: 42px;
-  line-height: 62px;
-  text-align: left;
-  margin-bottom: 0px;
-}
+      p {
+        margin-top: 52px;
+        color: #000;
+        font-size: 13px;
+        line-height: 20px;
+        text-align: left;
+      }
 
-.info__price {
-  text-align: left;
-  color: rgb(159, 159, 159);
-  font-size: 24px;
-  line-height: 36px;
-}
-.carousel-nav {
-  flex: 1;
-}
-.carousel-nav aside {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+      h5 {
+        margin-top: 18px;
+        margin-bottom: 12px;
+        color: #9f9f9f;
+        font-size: 14px;
+        line-height: 22px;
+        font-weight: normal;
+        text-align: left;
+      }
+    }
+    .button-group {
+      display: flex;
+      justify-content: left;
+    }
+    .info__colors {
+      display: flex;
+      justify-content: flex-start;
+    }
 
-.carousel-nav img {
-  max-width: 100%;
-  height: auto;
-}
+    .info__colors button {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin-left: 0px;
+    }
 
-.main {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    .info__colors button + button {
+      margin-left: 16px;
+    }
 
-.main img {
-  max-width: 100%;
-  height: auto;
-}
+    .info__count {
+      margin-top: 32px;
+      display: flex;
+    }
 
-.good__info {
-  flex: 2;
-  padding: 20px;
-}
+    button {
+      margin-left: 18px;
+      width: 215px;
+      height: 64px;
+      font-size: 20px;
+      color: #000;
+      background-color: #fff;
+      border-radius: 15px;
+      border: 1px solid #000;
+    }
 
-.product__info p {
-  display: flex;
-  text-align: left;
-}
+    button:hover {
+      cursor: pointer;
+    }
 
-.product_details {
-  text-align: left;
-  margin-top: 52px;
-}
+    .info__describe {
+      margin-top: 60px;
+      margin-bottom: 120px;
+      padding-top: 40px;
+      border-top: 1px solid #d9d9d9;
+      display: flex;
+      flex-direction: column;
 
-.info__size button {
-  height: 30px;
-  font-size: 13px;
-  border-radius: 5px;
-  background: rgb(249, 241, 231);
-  border: none;
-  margin-right: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
+      .describe__item {
+        color: #9f9f9f;
+        font-size: 16px;
+        line-height: 24px;
+        display: flex;
+        text-align: left;
 
-.product__info {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-}
+        .item__name {
+          width: 90px;
+        }
 
-.color-button {
-  width: 30px;
-  height: 30px;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  margin-right: 10px;
-}
+        .item__value::before {
+          content: "：";
+        }
 
-.info__count {
-  display: flex;
-  align-items: center;
-  padding-top: 30px;
-  justify-content: space-between;
-}
+        .item__value {
+          display: flex;
+          align-items: center;
 
-.quantity__controls button {
-  font-size: 20px;
-  padding: 5px 10px;
-  background-color: #f0f0f0;
-  border: none;
-  cursor: pointer;
-}
+          img {
+            width: 20px;
+            height: 20px;
+          }
 
-.quantity__controls span {
-  margin: 0 10px;
-}
+          img + img {
+            margin-left: 25px;
+          }
+        }
+      }
 
-.add-to-cart-button {
-  background-color: #fff; /* 白色填充色 */
-  color: #000; /* 黑色文字颜色 */
-  padding: 10px 20px;
-  border: 1px solid #333; /* 更细的黑色边框 */
-  cursor: pointer;
-  width: 215px;
-  height: 64px;
-  font-size: 20px;
-  border-radius: 15px;
+      .describe__item + .describe__item {
+        margin-top: 12px;
+      }
+    }
+  }
 }
-
-.info__describe {
-  margin-top: 60px;
-  margin-bottom: 120px;
-  padding-top: 40px;
-  border-top: 1px solid rgb(217, 217, 217);
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-}
-
-.icon-container {
-  display: flex;
-  align-items: center;
-}
-
-.icon {
-  width: 20px;
-  height: 20px;
-  margin-left: 10px;
-}
-
 </style>

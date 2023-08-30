@@ -14,7 +14,7 @@
             tellus, luctus nec ullamcorper mattis
           </p>
           <div class="button-wrapper">
-            <router-link to="/shop" class="shop-link">BUY Now</router-link>
+            <router-link to="/shopIndex" class="shop-link">BUY Now</router-link>
           </div>
         </div>
       </div>

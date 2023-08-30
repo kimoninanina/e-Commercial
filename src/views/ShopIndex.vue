@@ -6,7 +6,7 @@
         <div class="shop-heading-background">
           <div class="text-center">
             <h1 class="shop-heading">{{ title }}</h1>
-            <router-link to="/">Home > Shop</router-link>
+            <BreadcrumbNav :path="path" />
           </div>
         </div>
 
@@ -21,16 +21,21 @@
 
 <script>
 import ProductItem from "../components/ProductItem.vue";
+import BreadcrumbNav from "../components/BreadcrumbNav";
 
 export default {
   components: {
-    ProductItem
+    ProductItem,
+    BreadcrumbNav,
   },
   data() {
     return {
-      title: "Shop"
+      path: [
+        { name: "Home", path: "/homeIndex" },
+        { name: "Shop", path: "/shopIndex" },
+      ],
     };
-  }
+  },
 };
 </script>
 
