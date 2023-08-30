@@ -1,22 +1,23 @@
-<<<<<<< HEAD
+# Nina'a e-Commerical Project
 
-> online shopping
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
+## Project setup
+```
+yarn install
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
->>>>>>> a907ead (Initial commit)
+### Compiles and hot-reloads for development
+```
+yarn dev
+```
+
+### Compiles and minifies for production
+```
+yarn build
+```
+
+### Lints and fixes files
+```
+yarn lint
+```
+### WireFrame:
+https://www.figma.com/file/Js3k5PKjLIV3TMAqVpCA65/Online-shipping-website?type=design&node-id=0-1&mode=design&t=txCV2zWG04jCsudG-0
