@@ -4,10 +4,38 @@
       <img src="../assets/icon/Frame.png" alt="Logo" />
     </div>
     <div class="nav-links">
-      <span @click="link('/homeIndex')">Home</span>
-      <span @click="link('/shopIndex')">Shop</span>
-      <span @click="link('/aboutIndex')">About</span>
-      <span @click="link('/contactIndex')">Contact</span>
+      <span
+        role="link"
+        tabindex="0"
+        @click="link('/homeIndex')"
+        @keydown.enter="link('/homeIndex')"
+      >
+        Home
+      </span>
+      <span
+        role="link"
+        tabindex="0"
+        @click="link('/shopIndex')"
+        @keydown.enter="link('/shopIndex')"
+      >
+        Shop
+      </span>
+      <span
+        role="link"
+        tabindex="0"
+        @click="link('/aboutIndex')"
+        @keydown.enter="link('/aboutIndex')"
+      >
+        About
+      </span>
+      <span
+        role="link"
+        tabindex="0"
+        @click="link('/contactIndex')"
+        @keydown.enter="link('/contactIndex')"
+      >
+        Contact
+      </span>
     </div>
     <div class="user-actions">
       <router-link to="/login"
