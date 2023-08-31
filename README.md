@@ -1,4 +1,6 @@
 # Nina'a e-Commerical Project
+website
+https://nina.noxussj.top/#/homeIndex
 
 ## Project setup
 ```
