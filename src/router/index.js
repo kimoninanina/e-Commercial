@@ -5,6 +5,7 @@ import ProductItem from '@/components/ProductItem.vue'
 import ShopIndex from '../views/ShopIndex.vue'
 import ProductDetail from "@/views/ProductDetail.vue";
 import ContactIndex from "../views/ContactIndex.vue"
+import CartIndex from "../views/CartIndex.vue"
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: "/ContactIndex",
       component: ContactIndex,
       name: 'Contact'
+    },
+    {
+      path: "/CartIndex",
+      component: CartIndex,
+      name: 'Cart'
     }
   ]
 })

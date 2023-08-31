@@ -79,7 +79,7 @@ export default {
       input: 1,
       path: [
         { name: "Home", path: "/homeIndex" },
-        { name: "contact", path: "/contactIndex" },
+        { name: "Contact", path: "/contactIndex" },
       ],
       form: {
         yourName: "",
@@ -175,6 +175,7 @@ export default {
     .info__details {
       padding: 46px 76px 70px 106px;
       width: 392px;
+      text-align: left;
       .details__item {
         position: relative;
 
@@ -204,6 +205,7 @@ export default {
       margin-left: 30px;
       padding: 35px 78px 70px;
       width: 636px;
+      text-align: left;
 
       button {
         margin-top: 62px;

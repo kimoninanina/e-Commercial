@@ -1,19 +1,17 @@
 <template>
   <section class="shop-container">
     <div class="shop">
-      <div>
-        <AppNavbar />
-        <div class="shop-heading-background">
-          <div class="text-center">
-            <h1 class="shop-heading">{{ title }}</h1>
-            <BreadcrumbNav :path="path" />
-          </div>
+      <AppNavbar />
+      <div class="shop-heading-background">
+        <div class="text-center">
+          <h1 class="shop-heading">{{ title }}</h1>
+          <BreadcrumbNav :path="path" />
         </div>
+      </div>
 
-        <ProductItem @addToCart="addToCart" />
-        <div class="logo-and-footer">
-          <img src="../assets/FooterShopp.png" alt="Logo" />
-        </div>
+      <ProductItem @addToCart="addToCart" />
+      <div class="logo-and-footer">
+        <img src="../assets/FooterShopp.png" alt="Logo" />
       </div>
     </div>
   </section>

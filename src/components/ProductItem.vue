@@ -2,7 +2,7 @@
 
 <template>
   <div class="product-container">
-    <h4>Our Products</h4>
+    <h1>Our Products</h1>
     <div class="cat-container">
       <div v-for="cat in cats" :key="cat.id" class="cat-item">
         <div class="cat-card">
@@ -15,7 +15,7 @@
         </div>
       </div>
     </div>
-     <button>Show More</button>
+    <button>Show More</button>
   </div>
 </template>
 
@@ -23,7 +23,7 @@
 export default {
   data() {
     return {
-      cats: []
+      cats: [],
     };
   },
   mounted() {
@@ -44,22 +44,38 @@ export default {
     navigateToProductDetail() {
       // 使用路由导航到商品详细信息页面，并传递商品信息
       this.$router.push({ name: "ProductDetail", params: { cat: this.cat } });
-    }
-  }
+    },
+  },
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .product-container {
   background-color: white;
   padding-top: 40px;
-  padding-bottom: 40px;
-}
+  padding: 40px;
 
-.product-container h4 {
-  color: #3a3a3a;
-  font-weight: 700;
-  font-size: 35px;
+  h1 {
+    color: #3a3a3a;
+    font-weight: 700;
+    font-size: 35px;
+    text-align: center;
+  }
+
+  button {
+    width: 245px;
+    height: 48px;
+    color: #b88e2f;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: white;
+    border: 1px solid #b88e2f;
+    display: flex;
+    justify-content: center; /* 水平居中对齐 */
+    align-items: center; /* 垂直居中对齐 */
+    margin: 0 auto; /* 居中对齐 */
+    margin-top: 40px;
+  }
 }
 
 .cat-container {
@@ -68,56 +84,44 @@ export default {
   gap: 20px;
   padding-left: 30px;
   padding-right: 30px;
-}
 
-.cat-item {
-  width: 100%;
-}
+  .cat-item {
+    width: 100%;
 
-.cat-image {
-  width: 100%;
-  height: 200px; /* 设置固定的高度 */
-  object-fit: cover;
-}
+    .cat-card {
+      display: grid;
+      grid-template-rows: 1fr auto;
+      text-align: center;
+      height: 100%;
+      min-height: 250px;
 
-.cat-card {
-  display: grid;
-  grid-template-rows: 1fr auto;
-  text-align: center;
-  background-color: #d0d0d5be;
-  height: 100%;
-  min-height: 250px;
-}
+      .top-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
 
-.top-box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
+        .cat-image {
+          width: 100%;
+          height: 200px; /* 设置固定的高度 */
+          object-fit: cover;
+        }
+      }
 
-.bottom-box {
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #d0d0d5be;
-}
+      .bottom-box {
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #d0d0d5be;
+      }
 
-.cat-price {
-  font-size: 16px;
-  font-weight: bold;
-  color: #333;
-}
-
-button {
-  margin-top: 32px;
-  width: 245px;
-  height: 48px;
-  color: #b88e2f;
-  font-size: 16px;
-  font-weight: bold;
-  background-color: #fff;
-  border: 1px solid #b88e2f;
+      .cat-price {
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+      }
+    }
+  }
 }
 </style>

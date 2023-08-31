@@ -7,7 +7,7 @@
       <span @click="link('/homeIndex')">Home</span>
       <span @click="link('/shopIndex')">Shop</span>
       <span>About</span>
-      <span @click="link('/contactIndex')">Concat</span>
+      <span @click="link('/contactIndex')">Contact</span>
     </div>
     <div class="user-actions">
       <router-link to="/login"
@@ -16,7 +16,7 @@
       <router-link to="/search"
         ><img src="../assets/icon/search.png" alt="Logo"
       /></router-link>
-      <router-link to="/cart"
+      <router-link to="/CartIndex"
         ><img src="../assets/icon/shoppingcart.png" alt="Logo"
       /></router-link>
     </div>
