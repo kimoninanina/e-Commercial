@@ -1,15 +1,14 @@
 <template>
   <section class="shop-container">
     <div class="shop">
-      <AppNavbar />
+     
       <div class="shop-heading-background">
         <div class="text-center">
-          <h1 class="shop-heading">{{ title }}</h1>
           <BreadcrumbNav :path="path" />
         </div>
       </div>
 
-      <ProductItem @addToCart="addToCart" />
+      <ProductItem />
       <div class="logo-and-footer">
         <img src="../assets/FooterShopp.png" alt="Logo" />
       </div>

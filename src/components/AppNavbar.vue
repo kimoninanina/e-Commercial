@@ -6,7 +6,7 @@
     <div class="nav-links">
       <span @click="link('/homeIndex')">Home</span>
       <span @click="link('/shopIndex')">Shop</span>
-      <span>About</span>
+      <span @click="link('/aboutIndex')">About</span>
       <span @click="link('/contactIndex')">Contact</span>
     </div>
     <div class="user-actions">
@@ -17,17 +17,33 @@
         ><img src="../assets/icon/search.png" alt="Logo"
       /></router-link>
       <router-link to="/CartIndex"
-        ><img src="../assets/icon/shoppingcart.png" alt="Logo"
+        ><img
+          src="../assets/icon/shoppingcart.png"
+          @click="cartDrawer = !cartDrawer"
       /></router-link>
+      <CartDrawer />
     </div>
   </div>
 </template>
 <script>
+import CartDrawer from "./CartDrawer.vue";
+
 export default {
+  components: { CartDrawer },
   methods: {
     link(path) {
       if (this.$route.path === path) return;
       this.$router.push(path);
+    },
+  },
+  computed: {
+    cartDrawer: {
+      get() {
+        return this.$store.state.cart.show;
+      },
+      set(val) {
+        this.$store.commit("cart/showCart", val);
+      },
     },
   },
 };
