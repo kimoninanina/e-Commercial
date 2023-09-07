@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Homepage from '../views/HomeIndex.vue'
-import ProductItem from '@/components/ProductItem.vue'
+import ProductCard from '@/components/ProductCard.vue'
 import ShopIndex from '../views/ShopIndex.vue'
 import ProductDetail from "@/views/ProductDetail.vue";
 import ContactIndex from "../views/ContactIndex.vue"
@@ -24,8 +24,8 @@ export default new Router({
     },
     {
       path: '/product/:id', // 使用动态参数来标识不同的产品
-      name: 'ProductItem',
-      component: ProductItem
+      name: 'ProductCard',
+      component: ProductCard
     },
     {
       path: "/shopDetail",

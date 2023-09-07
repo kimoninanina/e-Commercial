@@ -7,8 +7,30 @@
           <BreadcrumbNav :path="path" />
         </div>
       </div>
+      <div class="index__products">
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
 
-      <ProductItem />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+      </div>
+      <div class="pagination-button-center">
+        <PaginationButton />
+      </div>
       <div class="logo-and-footer">
         <img src="../assets/FooterShopp.png" alt="Logo" />
       </div>
@@ -17,13 +39,15 @@
 </template>
 
 <script>
-import ProductItem from "../components/ProductItem.vue";
+import ProductCard from "../components/ProductCard.vue";
 import BreadcrumbNav from "../components/BreadcrumbNav";
+import PaginationButton from "../components/PaginationButton";
 
 export default {
   components: {
-    ProductItem,
+    ProductCard,
     BreadcrumbNav,
+    PaginationButton,
   },
   data() {
     return {
@@ -68,11 +92,26 @@ export default {
     align-items: center;
   }
 
+  .index__products {
+    margin-top: 70px;
+    padding: 0 102px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-row-gap: 32px;
+    grid-column-gap: 32px;
+  }
+
   .logo-and-footer {
     img {
       max-width: 100%;
       height: auto;
     }
+  }
+
+  .pagination-button-center {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
   }
 }
 </style>

@@ -13,16 +13,29 @@
         </div>
       </div>
     </div>
-    <ProductItem />
+    <h3>Our Products</h3>
+    <div class="index__products">
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+    </div>
+
+    <button class="center-button">Show More</button>
   </div>
 </template>
 
 <script>
-import ProductItem from "../components/ProductItem.vue";
+import ProductCard from "../components/ProductCard.vue";
 
 export default {
   components: {
-    ProductItem,
+    ProductCard,
   },
 
   data() {
@@ -105,5 +118,37 @@ export default {
       }
     }
   }
+  .index__products {
+    margin-top: 30px;
+    padding: 0 102px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-row-gap: 32px;
+    grid-column-gap: 32px;
+  }
+  button {
+    margin-top: 32px;
+    width: 245px;
+    height: 48px;
+    color: #b88e2f;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #fff;
+    border: 1px solid #b88e2f;
+  }
+}
+.center-button {
+  margin-top: 32px;
+  width: 245px;
+  height: 48px;
+  color: #b88e2f;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #fff;
+  border: 1px solid #b88e2f;
+  margin: 0 auto; 
+  display: block; 
+  text-align: center; 
+  margin-bottom:20px;
 }
 </style>
