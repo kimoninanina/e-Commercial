@@ -41,7 +41,7 @@
       <router-link to="/loginIndex"
         ><img src="../assets/icon/account.png" alt="Logo"
       /></router-link>
-      <router-link to="/search"
+      <router-link to="/searchIndex"
         ><img src="../assets/icon/search.png" alt="Logo"
       /></router-link>
       <router-link to="/cartIndex"

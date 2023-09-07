@@ -8,6 +8,7 @@ import ContactIndex from "../views/ContactIndex.vue"
 import CartIndex from "../views/CartIndex.vue"
 import AboutIndex from "../views/AboutIndex"
 import LoginIndex from "../views/LoginIndex"
+import SearchIndex from "../views/SearchIndex"
 
 Vue.use(Router)
 
@@ -55,6 +56,11 @@ export default new Router({
     {
       path: "/loginIndex",
       component: LoginIndex,
+      name: 'Login'
+    },
+    {
+      path: "/searchIndex",
+      component: SearchIndex,
       name: 'Login'
     }
   ]

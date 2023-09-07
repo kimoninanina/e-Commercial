@@ -6,8 +6,31 @@
     </div>
     <div class="login-container">
       <div class="login-form">
+        <div class="toggle-button">
+          <button
+            @click="setMode('login')"
+            :class="{
+              'button-signin': mode === 'login',
+              active: mode === 'login',
+            }"
+          >
+            Sign In
+          </button>
+
+          <!-- 注册按钮 -->
+          <button
+            @click="setMode('register')"
+            :class="{
+              'button-signin': mode === 'register',
+              active: mode === 'register',
+            }"
+          >
+            Register
+          </button>
+        </div>
+
         <span>Welcome back !!!</span>
-        <h2>Sign In</h2>
+        <h2>{{ mode === "login" ? "Sign In" : "Register" }}</h2>
         <form>
           <div class="form-group">
             <label for="email">Email</label>
@@ -23,8 +46,22 @@
 
           <div class="info__form">
             <div class="button-container">
-              <button @click="login">Sign In</button>
-              <p>I don’t have an account? <a href="#">Sign up</a></p>
+              <!-- 根据模式渲染不同的按钮文本 -->
+              <button @click="mode === 'login' ? login : register">
+                {{ mode === "login" ? "Sign In" : "Register" }}
+              </button>
+              <p>
+                {{
+                  mode === "login"
+                    ? "I don't have an account?"
+                    : "Already have an account?"
+                }}
+                <a
+                  href="#"
+                  @click="setMode(mode === 'login' ? 'register' : 'login')"
+                  >{{ mode === "login" ? "Sign up" : "Sign in" }}</a
+                >
+              </p>
             </div>
           </div>
         </form>
@@ -48,7 +85,22 @@ export default {
         { name: "Home", path: "/homeIndex" },
         { name: "Login", path: "/LoginIndex" },
       ],
+      mode: "login", // 初始模式为登录
+      email: "",
+      password: "",
     };
+  },
+  methods: {
+    // 设置模式的方法
+    setMode(selectedMode) {
+      this.mode = selectedMode;
+    },
+    login() {
+      // 处理登录逻辑
+    },
+    register() {
+      // 处理注册逻辑
+    },
   },
 };
 </script>
@@ -84,6 +136,24 @@ export default {
   align-items: center;
   height: 100vh;
   text-align: left;
+  .toggle-button {
+    margin-top: 30px;
+    padding-bottom: 30px;
+    display: flex;
+    margin-left: -20px;
+
+    button {
+      background-color: transparent;
+      color: inherit;
+      padding: 10px 20px;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: underline; /* 初始状态下带有下划线 */
+      margin-right: 10px;
+      border-radius: 20px;
+    }
+  }
 
   .login-form {
     flex: 1;
@@ -103,10 +173,10 @@ export default {
         display: block;
         margin-bottom: 5px;
         .forgot-link {
-          margin-left: 160px; 
-          font-size: 14px; 
-          text-decoration: none; 
-          color: inherit; 
+          margin-left: 160px;
+          font-size: 14px;
+          text-decoration: none;
+          color: inherit;
         }
       }
 
@@ -162,5 +232,18 @@ export default {
       height: auto;
     }
   }
+}
+
+/* 当按钮被选中时的样式 */
+.button-signin.active {
+  background-color: #b88e2f;
+  color: #fff;
+  text-decoration: none; /* 移除下划线 */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* 添加过渡效果 */
+}
+
+.button-signin.active:hover {
+  background-color: #bd741a; /* 添加悬停时的背景颜色 */
 }
 </style>
