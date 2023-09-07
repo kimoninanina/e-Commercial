@@ -7,6 +7,7 @@ import ProductDetail from "@/views/ProductDetail.vue";
 import ContactIndex from "../views/ContactIndex.vue"
 import CartIndex from "../views/CartIndex.vue"
 import AboutIndex from "../views/AboutIndex"
+import LoginIndex from "../views/LoginIndex"
 
 Vue.use(Router)
 
@@ -15,6 +16,10 @@ export default new Router({
     {
       path: '/homeIndex',
       component: Homepage
+    },
+    {
+      path: '/',
+      redirect: '/homeIndex'
     },
     {
       path: '/product/:id', // 使用动态参数来标识不同的产品
@@ -46,6 +51,11 @@ export default new Router({
       path: "/aboutIndex",
       component: AboutIndex,
       name: 'About'
+    },
+    {
+      path: "/loginIndex",
+      component: LoginIndex,
+      name: 'Login'
     }
   ]
 })

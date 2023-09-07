@@ -38,13 +38,13 @@
       </span>
     </div>
     <div class="user-actions">
-      <router-link to="/login"
+      <router-link to="/loginIndex"
         ><img src="../assets/icon/account.png" alt="Logo"
       /></router-link>
       <router-link to="/search"
         ><img src="../assets/icon/search.png" alt="Logo"
       /></router-link>
-      <router-link to="/CartIndex"
+      <router-link to="/cartIndex"
         ><img
           src="../assets/icon/shoppingcart.png"
           @click="cartDrawer = !cartDrawer"
