@@ -93,7 +93,7 @@ export default {
      * 跳转到商品详情
      */
     link() {
-      this.$router.push("/shopDetail/" + this.banners.productId);
+      this.$router.push("/productDetail/" + this.banners.productId);
     },
   },
   mounted() {

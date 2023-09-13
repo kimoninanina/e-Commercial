@@ -5,51 +5,51 @@
     </div>
 
     <div class="index__good">
-      <CarouselNav :data="calouselList" />
+      <CarouselNav :data="data.images" />
 
       <div class="good__info">
-        <h4>Asgaard sofa</h4>
-        <div class="info__price">Rs. 250,000.00</div>
+        <h1>{{ data.name }}</h1>
+        <div class="info__price">${{ data.price }}</div>
 
         <p>
-          Setting the bar as one of the loudest speakers in its class, the
-          Kilburn is a compact, stout-hearted hero with a well-balanced audio
-          which boasts a clear midrange and extended highs for a sound.
+          {{ data.describe }}
         </p>
 
         <h5>Size</h5>
         <ButtonGroup
           class="button-group"
-          v-model="sizeActive"
-          :options="sizeList"
+          v-model="form.sizeActive"
+          :options="data.size"
         />
         <h5>Color</h5>
 
         <div class="info__colors">
-          <button :style="{ background: '#816DFA' }"></button>
-          <button :style="{ background: '#000' }"></button>
-          <button :style="{ background: '#B88E2F' }"></button>
+          <button
+            :style="{ background: item }"
+            v-for="(item, index) in data.color"
+            :key="index"
+          ></button>
         </div>
 
         <div class="info__count">
-          <NumberCounter v-model="num" />
-          <button>Add To Cart</button>
+          <NumberCounter v-model="form.number" />
+          <button @click="handleAddCart">Add To Cart</button>
         </div>
 
         <div class="info__describe">
           <div class="describe__item">
             <div class="item__name">SKU</div>
-            <div class="item__value">SS001</div>
+            <div class="item__value">{{ data.sku }}</div>
           </div>
 
           <div class="describe__item">
             <div class="item__name">Category</div>
-            <div class="item__value">Sofas</div>
+            <div class="item__value">{{ data.category }}</div>
           </div>
 
           <div class="describe__item">
             <div class="item__name">Tags</div>
-            <div class="item__value">Sofa, Chair, Home, Shop</div>
+            <div class="item__value">{{ data.tags.join(", ") }}</div>
           </div>
 
           <div class="describe__item">
@@ -69,11 +69,7 @@
 <script>
 import BreadcrumbNav from "@/components/BreadcrumbNav.vue";
 import CarouselNav from "@/components/CarouselNav.vue";
-
-import Carousel1 from "@/assets/shop-detail/carousel1.png";
-import Carousel2 from "@/assets/shop-detail/carousel2.png";
-import Carousel3 from "@/assets/shop-detail/carousel3.png";
-import Carousel4 from "@/assets/shop-detail/carousel4.png";
+import { IProductsDetail } from "@/api/shop-index/index.js";
 
 import ButtonGroup from "@/components/ButtonGroup.vue";
 import NumberCounter from "@/components/NumberCounter.vue";
@@ -86,15 +82,49 @@ export default {
         { name: "Home", path: "/homeIndex" },
         { name: "Shop", path: "/shopIndex" },
       ],
-      calouselList: [Carousel1, Carousel2, Carousel3, Carousel4],
-      sizeActive: "1",
-      sizeList: [
-        { name: "L", value: "1" },
-        { name: "XL", value: "2" },
-        { name: "XS", value: "3" },
-      ],
-      num: 1,
+      data: {
+        productId: "",
+        name: "",
+        summary: "",
+        describe: "",
+        price: 0,
+        priceOld: 0,
+        images: [],
+        sku: "",
+        category: "",
+        tags: [],
+        size: [],
+        color: [],
+      },
+      form: {
+        sizeActive: "1",
+        number: 1,
+      },
     };
+  },
+  methods: {
+    /**
+     * 添加到购物车
+     */
+    handleAddCart() {
+      const form = {
+        name: this.data.name,
+        productId: this.data.productId,
+        price: this.data.price,
+        images: this.data.images,
+        number: this.form.number,
+        sizeActive: this.form.sizeActive,
+      };
+
+      this.$store.commit("cart/addCart", form);
+      this.$store.commit("cart/showCart", true);
+    },
+  },
+  mounted() {
+    const productId = this.$route.params.productId;
+    IProductsDetail({ productId }).then((res) => {
+      this.data = res;
+    });
   },
 };
 </script>
@@ -119,7 +149,7 @@ export default {
       margin-left: 106px;
       width: 424px;
 
-      h4 {
+      h1 {
         color: #000;
         font-weight: bold;
         font-size: 42px;

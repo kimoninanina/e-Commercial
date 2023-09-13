@@ -28,7 +28,7 @@ export default new Router({
       component: ProductCard
     },
     {
-      path: "/shopDetail",
+      path: '/productDetail/:productId',
       name: "ProductDetail",
       component: ProductDetail,
       props: true
