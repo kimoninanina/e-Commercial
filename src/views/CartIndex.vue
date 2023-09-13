@@ -1,7 +1,7 @@
 <template>
   <div class="cart-index">
     <div class="index__banner">
-      <h4>Cart</h4>
+      <h1>Cart</h1>
       <BreadcrumbNav :path="path" />
     </div>
 
@@ -16,16 +16,25 @@
           </thead>
 
           <tbody>
-            <tr>
+            <tr v-for="(item, index) in data.items" :key="index">
               <td>
-                <img class="icon-photo" src="@/assets/cart-index/car1.png" />
-                <span> Asgaard sofa</span>
+                <img class="icon-photo" :src="item.images && item.images[0]" />
+                {{ item.name }}
               </td>
-              <td>Rs. 250,000.00</td>
-              <td><el-input v-model="input" /></td>
+              <td>Rs. {{ item.price }}</td>
+              <td>
+                <el-input
+                  :value="item.number"
+                  @input="handleInput($event, index)"
+                />
+              </td>
               <td class="tr__total">
-                <span>Rs. 250,000.00</span>
-                <img class="icon-del" src="@/assets/cart-index/icon-del.png" />
+                <span>Rs. {{ item.price * item.number }}</span>
+                <img
+                  class="icon-del"
+                  src="@/assets/cart-index/icon-del.png"
+                  @click="delCart(index)"
+                />
               </td>
             </tr>
           </tbody>
@@ -33,19 +42,19 @@
       </div>
 
       <div class="products__totals">
-        <h5>Cart Totals</h5>
+        <h2>Cart Totals</h2>
 
         <div class="totals__row">
           <span>Subtotal</span>
-          <p>Rs. 250,000.00</p>
+          <p>${{ totalPrice }}</p>
         </div>
 
         <div class="totals__row">
           <span>Total</span>
-          <p class="total">Rs. 250,000.00</p>
+          <p class="total">${{ totalPrice }}</p>
         </div>
 
-        <button>Check Out</button>
+         <button @click="$link('/checkoutIndex')">Check Out</button>
       </div>
     </div>
   </div>
@@ -85,13 +94,13 @@ export default {
     justify-content: center;
     align-items: center;
 
-    h4 {
+    h1 {
       color: #000;
       font-size: 48px;
       line-height: 72px;
     }
 
-    h5 {
+    h2 {
       margin-top: 2px;
       color: #000;
       font-size: 16px;
@@ -209,7 +218,7 @@ export default {
       flex-direction: column;
       align-items: center;
 
-      h5 {
+      h2 {
         margin-bottom: 60px;
         color: #000;
         font-size: 32px;

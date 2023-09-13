@@ -1,22 +1,64 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 const store = new Vuex.Store({
-    modules: {
-        cart: {
-            namespaced: true,
-            state: {
-                show: false
-            },
-            mutations: {
-                showCart(state, payload) {
-                    state.show = payload
-                }
-            }
-        }
-    }
-})
+  modules: {
+    cart: {
+      namespaced: true,
+      state: {
+        show: false,
+        items: JSON.parse(localStorage.getItem("carts") || "[]"),
+      },
+      getters: {
+        /**
+         * 购物车商品总金额
+         */
+        totalPrice(state) {
+          return state.items.reduce(
+            (total, item) => total + item.number * item.price,
+            0
+          );
+        },
+      },
+      mutations: {
+        showCart(state, payload) {
+          state.show = payload;
+        },
+        addCart(state, payload) {
+          const findIndex = state.items.findIndex(
+            (item) => item.productId === payload.productId
+          );
+          if (findIndex > -1) {
+            return (state.items[findIndex].number += payload.number);
+          }
 
-export default store
+          state.items.push(payload);
+
+          localStorage.setItem("carts", JSON.stringify(state.items));
+        },
+
+        /**
+         * 删除购物车商品
+         */
+        delCart(state, payload) {
+          state.items.splice(payload, 1);
+
+          localStorage.setItem("carts", JSON.stringify(state.items));
+        },
+
+        /**
+         * 修改购物车商品数量
+         */
+        editCart(state, payload) {
+          state.items[payload.index].number = payload.number;
+
+          localStorage.setItem("carts", JSON.stringify(state.items));
+        },
+      },
+    },
+  },
+});
+
+export default store;
