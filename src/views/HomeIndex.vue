@@ -8,7 +8,7 @@
           {{ banners.describe }}
         </p>
         <div class="button-wrapper">
-             <button @click="link">BUY Now</button>
+          <router-link to="/shopIndex" class="shop-link">BUY Now</router-link>
         </div>
       </div>
     </div>
@@ -21,7 +21,13 @@
       />
     </div>
 
-    <button class="center-button">Show More</button>
+    <button
+      v-if="products.data.length < products.count"
+      @click="showMore"
+      class="center-button"
+    >
+      Show More
+    </button>
   </div>
 </template>
 
@@ -47,9 +53,9 @@ export default {
         count: 0,
       },
       cond: {
-          page: 1,
-          pageSize: 4
-      }
+        page: 1,
+        pageSize: 4,
+      },
     };
   },
   methods: {
@@ -76,19 +82,19 @@ export default {
      * 展示更多
      */
     showMore() {
-        this.cond.page++
+      this.cond.page++;
 
-        IOurProducts(this.cond).then((res) => {
-            this.products.data.push(...res.data)
-        })
+      IOurProducts(this.cond).then((res) => {
+        this.products.data.push(...res.data);
+      });
     },
 
     /**
      * 跳转到商品详情
      */
     link() {
-        this.$router.push('/productDetail/' + this.banners.productId)
-    }
+      this.$router.push("/shopDetail/" + this.banners.productId);
+    },
   },
   mounted() {
     this.getNewProduct();

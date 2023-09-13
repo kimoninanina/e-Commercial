@@ -1,7 +1,6 @@
 <template>
   <div class="product-card" @click="link">
-    <img src="@/assets/home/photo1.png" />
-
+    <img :src="data.images && data.images[0]" />
     <div class="card__container">
       <h4>{{ data.name }}</h4>
       <p>{{ data.summary }}</p>
@@ -19,15 +18,18 @@
 
 <script>
 export default {
-  methods: {
-    props: {
-      data: {
-        type: Object,
-        default: () => {},
-      },
+  props: {
+    data: {
+      type: Object,
+      default: () => {},
     },
+  },
+  methods: {
+    /**
+     * 跳转到商品详情
+     */
     link() {
-      this.$router.push("/shopDetail" + this.data.productId);
+      this.$router.push("/productDetail/" + this.data.productId);
     },
   },
 };
@@ -36,9 +38,10 @@ export default {
 <style lang="scss" scoped>
 .product-card {
   position: relative;
-  height: 446px;
+  height: 480px;
   background-color: #f4f5f7;
   cursor: pointer;
+  margin-bottom: 25px;
 
   img {
     width: 100%;
@@ -48,12 +51,10 @@ export default {
 
   .card__container {
     padding: 16px;
-
     p {
-      margin-top: 8px;
+      margin-top: 4px;
       color: #898989;
-      font-size: 16px;
-      line-height: 24px;
+      font-size: 13px;
     }
 
     .container__price {
@@ -100,32 +101,6 @@ export default {
       font-size: 16px;
       font-weight: bold;
       background-color: #fff;
-    }
-
-    footer {
-      margin-top: 24px;
-      display: flex;
-
-      .footer__item {
-        display: flex;
-        align-items: center;
-
-        img {
-          width: 16px;
-          height: 16px;
-        }
-
-        span {
-          margin-left: 2px;
-          color: #fff;
-          font-size: 16px;
-          line-height: 24px;
-        }
-      }
-
-      .footer__item + .footer__item {
-        margin-left: 20px;
-      }
     }
   }
 }

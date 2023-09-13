@@ -8,28 +8,18 @@
         </div>
       </div>
       <div class="index__products">
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        <ProductCard
+          v-for="(item, index) in products.data"
+          :key="index"
+          :data="item"
+        />
       </div>
       <div class="pagination-button-center">
-        <PaginationButton />
+        <PaginationButton
+          :count="products.count"
+          v-model="cond"
+          @change="getProducts"
+        />
       </div>
       <div class="logo-and-footer">
         <img src="../assets/FooterShopp.png" alt="Logo" />
@@ -39,6 +29,7 @@
 </template>
 
 <script>
+import { IBanners, IProductsList } from "@/api/shop-index/index.js";
 import ProductCard from "../components/ProductCard.vue";
 import BreadcrumbNav from "../components/BreadcrumbNav";
 import PaginationButton from "../components/PaginationButton";
@@ -55,7 +46,41 @@ export default {
         { name: "Home", path: "/homeIndex" },
         { name: "Shop", path: "/shopIndex" },
       ],
+      banners: {
+        images: [],
+      },
+      products: {
+        data: [],
+        count: 0,
+      },
+      cond: {
+        page: 1,
+        pageSize: 4,
+      },
     };
+  },
+  methods: {
+    /**
+     * 获取封面图
+     */
+    getBanners() {
+      IBanners({ page: "shopIndex" }).then((res) => {
+        this.banners = res;
+      });
+    },
+
+    /**
+     * 获取商品列表
+     */
+    getProducts() {
+      IProductsList(this.cond).then((res) => {
+        this.products = res;
+      });
+    },
+  },
+  mounted() {
+    this.getBanners();
+    this.getProducts();
   },
 };
 </script>
@@ -94,7 +119,7 @@ export default {
 
   .index__products {
     margin-top: 70px;
-    padding: 0 102px;
+    padding: 0 90px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-row-gap: 32px;
