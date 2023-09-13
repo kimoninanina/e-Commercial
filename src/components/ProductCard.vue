@@ -3,11 +3,11 @@
     <img src="@/assets/home/photo1.png" />
 
     <div class="card__container">
-      <h4>Syltherine</h4>
-      <p>Stylish cafe chair</p>
+      <h4>{{ data.name }}</h4>
+      <p>{{ data.summary }}</p>
       <p class="container__price">
-        <span class="price-old">Rp 3.500.000</span>
-        <span class="price-new">Rp 2.500.000</span>
+        <span class="price-old">${{ data.price }}</span>
+        <span class="price-new">${{ data.priceOld }}</span>
       </p>
     </div>
 
@@ -20,8 +20,14 @@
 <script>
 export default {
   methods: {
+    props: {
+      data: {
+        type: Object,
+        default: () => {},
+      },
+    },
     link() {
-      this.$router.push("/shopDetail");
+      this.$router.push("/shopDetail" + this.data.productId);
     },
   },
 };
@@ -51,7 +57,7 @@ export default {
     }
 
     .container__price {
-      display: flex; 
+      display: flex;
       align-items: baseline; // 基线对齐以保持文字底部对齐
 
       .price-new {

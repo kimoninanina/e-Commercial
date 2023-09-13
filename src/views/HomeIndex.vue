@@ -5,25 +5,20 @@
         <h1>New Arrival</h1>
         <h2>Discover Our <br />New Collection</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
-          tellus, luctus nec ullamcorper mattis.
+          {{ banners.describe }}
         </p>
         <div class="button-wrapper">
-          <router-link to="/shopIndex" class="shop-link">BUY Now</router-link>
+             <button @click="link">BUY Now</button>
         </div>
       </div>
     </div>
     <h3>Our Products</h3>
     <div class="index__products">
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
+      <ProductCard
+        v-for="(item, index) in products.data"
+        :key="index"
+        :data="item"
+      />
     </div>
 
     <button class="center-button">Show More</button>
@@ -32,6 +27,7 @@
 
 <script>
 import ProductCard from "../components/ProductCard.vue";
+import { INewProduct, IOurProducts } from "@/api/home-index/index.js";
 
 export default {
   components: {
@@ -41,7 +37,62 @@ export default {
   data() {
     return {
       backgroundImage: require("@/assets/Backgrounp.jpg"),
+      banners: {
+        images: [],
+        describe: "",
+        productId: "",
+      },
+      products: {
+        data: [],
+        count: 0,
+      },
+      cond: {
+          page: 1,
+          pageSize: 4
+      }
     };
+  },
+  methods: {
+    /**
+     * 获取新出商品
+     */
+    getNewProduct() {
+      INewProduct().then((res) => {
+        this.banners = res;
+      });
+    },
+
+    /**
+     * 获取商品列表
+     */
+    getProducts() {
+      IOurProducts(this.cond).then((res) => {
+        this.products = res;
+        console.log(res);
+      });
+    },
+
+    /**
+     * 展示更多
+     */
+    showMore() {
+        this.cond.page++
+
+        IOurProducts(this.cond).then((res) => {
+            this.products.data.push(...res.data)
+        })
+    },
+
+    /**
+     * 跳转到商品详情
+     */
+    link() {
+        this.$router.push('/productDetail/' + this.banners.productId)
+    }
+  },
+  mounted() {
+    this.getNewProduct();
+    this.getProducts();
   },
 };
 </script>
@@ -146,9 +197,9 @@ export default {
   font-weight: bold;
   background-color: #fff;
   border: 1px solid #b88e2f;
-  margin: 0 auto; 
-  display: block; 
-  text-align: center; 
-  margin-bottom:20px;
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+  margin-bottom: 20px;
 }
 </style>
