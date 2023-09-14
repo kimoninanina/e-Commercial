@@ -8,12 +8,19 @@
       <div class="search-image">
         <img src="../assets/Search.png" alt="Search Image" />
       </div>
+
       <div class="search-form">
-        <h2 class="form-title">Search for Products</h2>
-        <form>
-          <input type="text" v-model="searchQuery" placeholder="Search for your item" />
-          <button @click="search">Search</button>
-        </form>
+        <div class="input-wrapper">
+          <button class="search-icon" @click="handleSearch">
+            <img src="../assets/icon/search-icon.png" alt="Search Image" />
+          </button>
+          <input
+            type="text"
+            placeholder="Search for your item"
+            v-model="searchQuery"
+            @input="handleInput"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -37,8 +44,16 @@ export default {
   },
   methods: {
     search() {
-      // Implement your search logic here
+      // Implement search logic here
       // Populate this.searchResults with the search results
+    },
+    handleInput() {
+      // Handle input changes if needed
+    },
+    handleSearch() {
+      // Trigger the search action when the button is clicked
+      //  emit an event or call a method to perform the search
+      this.$emit("search", this.searchQuery);
     },
   },
 };
@@ -91,39 +106,42 @@ export default {
       display: flex;
       flex-direction: column; /* 将表单内部的元素以列方式排列 */
 
-      .form-title {
-        font-size: 20px;
-        font-weight: bold;
-        margin-bottom: 10px;
-        text-align: left;
-        margin-top: 0; /* 添加上边距以解决对齐问题 */
-      }
+      .input-wrapper {
+        position: relative;
+        display: inline-block;
 
-      form {
         input {
-          max-width: 350px;
-          width: 100%;
-          padding: 10px;
-          border: 1px solid #ccc;
-          border-radius: 20px;
-          background-color: #fff6f4;
-          margin-bottom: 20px;
-        }
-
-        button {
-          background-color: #b88e2f;
-          color: #fff;
-          padding: 10px 20px;
+          padding: 15px 10px;
           border: none;
           border-radius: 20px;
-          font-size: 16px;
-          cursor: pointer;
-          transition: background-color 0.3s ease;
-          margin-right: 10px;
+          background-color: rgba(184, 142, 47, 0.1); /* 10% 透明度 */
+          width: 100%;
+          max-width: 350px;
+          text-align: center; /* 文本水平居中对齐 */
+          vertical-align: middle; /* 文本垂直居中对齐 */
+        }
+        ::placeholder {
+          color: gray; // 更改占位符文本颜色为黄色
+          font-size: 18px; // 更改占位符文本的字体大小
+          font-weight: bold;
+        }
 
-          &:hover {
-            background-color: #bd741a;
-          }
+        button.search-icon {
+          padding: 5px;
+          border: none;
+          background-color: transparent;
+          cursor: pointer;
+          position: absolute;
+          top: 50%;
+          left: 10px; /* 调整图标与输入框的距离 */
+          transform: translateY(-50%);
+          display: flex;
+          align-items: center;
+        }
+
+        img {
+          width: 24px;
+          height: 24px;
         }
       }
     }
