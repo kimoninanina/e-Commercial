@@ -108,7 +108,14 @@ export default {
   display: flex;
   flex-direction: column;
   text-align: left;
-
+  h3 {
+    margin-top: 36px;
+    width: 100%;
+    color: #3a3a3a;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+  }
   .index__banner {
     padding-top: 158px;
     padding-right: 58px;

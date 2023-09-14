@@ -75,63 +75,68 @@ export default {
   },
 };
 </script>
-<style scoped>
+
+<style scoped lang="scss">
 .navbar-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: white;
   height: 100px;
-}
 
-.logo-and-title {
-  display: flex;
-  align-items: center;
-}
+  .logo-and-title {
+    display: flex;
+    align-items: center;
 
-.logo {
-  width: 60px;
-  height: 60px;
-}
+    .logo {
+      width: 60px;
+      height: 60px;
 
-.logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
 
-.title {
-  font-size: 24px;
-  margin-left: 10px;
-  font-weight: bold;
-  color: #333;
-}
+    .title {
+      font-size: 24px;
+      margin-left: 10px;
+      font-weight: bold;
+      color: #333;
+    }
+  }
 
-.nav-links {
-  display: flex;
-  justify-content: space-between;
-  width: 400px; /* 调整导航链接容器的宽度 */
-  margin: 0 auto; /* 居中导航链接容器 */
-  color: black;
-  font-size: 16px;
-  line-height: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  text-decoration: none;
-}
+  .nav-links {
+    display: flex;
+    justify-content: space-between;
+    width: 400px; 
+    margin: 0 auto; 
+    color: black;
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
 
-.router-link-exact-active,
-.nav-links router-link {
-  text-decoration: none;
-  color: black; /* 设置文字颜色为黑色 */
-}
-.user-actions {
-  display: flex;
-  gap: 30px;
-  padding: 50px; /* 将 margin-right 设置为 auto，使其靠左 */
-}
-.user-actions .img {
-  width: 28px;
-  height: 28px;
+    &.router-link-exact-active,
+    &.router-link {
+      text-decoration: none;
+      color: black; 
+    }
+  }
+
+  .user-actions {
+    display: flex;
+    gap: 50px;
+    margin-left: 158px;
+    margin-right: 50px;
+
+    img {
+      width: 28px;
+      height: 28px;
+      cursor: pointer;
+    }
+  }
 }
 </style>
