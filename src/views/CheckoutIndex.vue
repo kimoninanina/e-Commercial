@@ -65,11 +65,11 @@
           </div>
           <div class="product__row">
             <span>Subtotal</span>
-            <span>${{ form.totalPrice }}</span>
+            <span>${{ totalPrice }}</span>
           </div>
           <div class="product__row">
             <span>Total</span>
-            <h4 class="row__total">${{ form.totalPrice }}</h4>
+            <h4 class="row__total">${{ totalPrice }}</h4>
           </div>
 
           <footer>
