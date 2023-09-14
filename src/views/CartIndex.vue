@@ -19,7 +19,7 @@
             <tr v-for="(item, index) in data.items" :key="index">
               <td>
                 <img class="icon-photo" :src="item.images && item.images[0]" />
-                <p>{{ item.name }}</p>
+                {{ item.name }}
               </td>
               <td>$ {{ item.price }}</td>
               <td>
@@ -161,150 +161,147 @@ export default {
   }
 
   .index__products {
-    margin-top: 70px;
-    padding: 0 102px;
-    width: 100%;
-    display: flex;
-    margin-bottom: 40px;
-
-    .products__table {
-      flex-grow: 1;
-      width: 0;
-
-      table {
-        border-spacing: 0;
-
-        thead {
-          th {
-            padding-left: 40px;
-            height: 55px;
-            color: #000;
-            font-size: 16px;
-            background-color: #f9f1e7;
-            text-align: left;
-          }
-        }
-
-        tbody:before {
-          content: "";
-          display: block;
-          height: 55px;
-        }
-
-        tbody {
-          tr {
-            height: 95px;
-            vertical-align: middle;
-
-            td {
-              text-align: left;
-              padding-bottom: 5px;
-              padding-left: 40px;
-              color: #9f9f9f;
-
-               p {
-                font-size: 13px;
-              
-              }
-            }
-
-            .tr__total {
-              color: #000;
-
-              span {
-                line-height: 16px;
-              }
-            }
-
-            .icon-photo {
-              margin-right: 20px;
-              margin-bottom: 10px;
-              width: 90px;
-              height: 95px;
-              vertical-align: middle;
-            }
-
-            .icon-del {
-              margin-left: 50px;
-              width: 28px;
-              height: 28px;
-              vertical-align: middle;
-              cursor: pointer;
-            }
-
-            .el-input {
-              width: 64px;
-
-              :deep(.el-input__inner) {
-                padding: 0;
-                height: 32px;
-                line-height: 32px;
-                border-radius: 5px;
-                text-align: center;
-                border: 1px solid #9f9f9f;
-              }
-            }
-          }
-        }
-      }
-    }
-
-    .products__totals {
-      margin-left: 30px;
-      padding: 15px 75px 0;
-      width: 393px;
-      height: 390px;
-      background: #f9f1e7;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      h2 {
-        margin-bottom: 60px;
-        color: #000;
-        font-size: 32px;
-        line-height: 48px;
-      }
-
-      .totals__row {
+        margin-top: 70px;
+        padding: 0 102px;
         width: 100%;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
 
-        span {
-          color: #000;
-          font-size: 16px;
-          line-height: 24px;
+        .products__table {
+            flex-grow: 1;
+            width: 0;
+
+            table {
+                border-spacing: 0;
+
+                thead {
+                    th {
+                        padding-left: 40px;
+                        height: 55px;
+                        color: #000;
+                        font-size: 16px;
+                        background-color: #f9f1e7;
+                        text-align: left;
+                    }
+                }
+
+                tbody:before {
+                    content: '';
+                    display: block;
+                    height: 0;
+                }
+
+                tbody {
+                    tr {
+                        height: 95px;
+                        vertical-align: middle;
+
+                        td {
+                            padding-top: 40px;
+                            padding-left: 20px;
+                            color: #9f9f9f;
+                            font-size:15px;
+                        }
+
+                        .tr__total {
+                            color: #000;
+
+                            span {
+                                line-height: 16px;
+                                display: inline-block;
+                                vertical-align: middle;
+                            }
+                        }
+
+                        .icon-photo {
+                            padding-right: 20px;
+                            width: 105px;
+                            height: 95px;
+                            display: inline-block;
+                            vertical-align: middle;
+                        }
+
+                        .icon-del {
+                            margin-left: 50px;
+                            width: 28px;
+                            height: 28px;
+                            display: inline-block;
+                            vertical-align: middle;
+                            cursor: pointer;
+                        }
+
+                        .el-input {
+                            width: 64px;
+
+                            :deep(.el-input__inner) {
+                                padding: 0;
+                                height: 32px;
+                                line-height: 32px;
+                                border-radius: 5px;
+                                text-align: center;
+                                border: 1px solid #9f9f9f;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
-        p {
-          color: #9f9f9f;
-          font-size: 16px;
-          line-height: 24px;
+        .products__totals {
+            margin-left: 30px;
+            padding: 15px 75px 0;
+            width: 393px;
+            height: 390px;
+            background: #f9f1e7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            h5 {
+                margin-bottom: 60px;
+                color: #000;
+                font-size: 32px;
+                line-height: 48px;
+            }
+
+            .totals__row {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                span {
+                    color: #000;
+                    font-size: 16px;
+                    line-height: 24px;
+                }
+
+                p {
+                    color: #9f9f9f;
+                    font-size: 16px;
+                    line-height: 24px;
+                }
+
+                p.total {
+                    color: #b88e2f;
+                    font-size: 20px;
+                    line-height: 30px;
+                }
+            }
+
+            .totals__row + .totals__row {
+                margin-top: 30px;
+            }
+
+            button {
+                margin-top: 42px;
+                width: 222px;
+                height: 58px;
+                border-radius: 15px;
+                background-color: transparent;
+                border: 1px solid #000;
+                cursor: pointer;
+            }
         }
-
-        p.total {
-          color: #b88e2f;
-          font-size: 20px;
-          line-height: 30px;
-        }
-      }
-
-      .totals__row + .totals__row {
-        margin-top: 30px;
-      }
-
-      button {
-        margin-top: 42px;
-        width: 222px;
-        height: 58px;
-        border-radius: 15px;
-        background-color: transparent;
-        border: 1px solid #000;
-        cursor: pointer;
-      }
     }
-  }
 }
 </style>
