@@ -13,7 +13,7 @@ import CheckoutIndex from "../views/CheckoutIndex";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: "/homeIndex",
@@ -71,3 +71,15 @@ export default new Router({
     },
   ],
 });
+
+/**
+ * 路由跳转
+ */
+export const link = (path) => {
+  if (router.currentRoute.path === path) return; // Prevent navigating to the current route
+  router.push(path);
+};
+
+Vue.prototype.$link = link;
+
+export default router;

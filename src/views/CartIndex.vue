@@ -19,9 +19,9 @@
             <tr v-for="(item, index) in data.items" :key="index">
               <td>
                 <img class="icon-photo" :src="item.images && item.images[0]" />
-                {{ item.name }}
+                <p>{{ item.name }}</p>
               </td>
-              <td>Rs. {{ item.price }}</td>
+              <td>$ {{ item.price }}</td>
               <td>
                 <el-input
                   :value="item.number"
@@ -29,7 +29,7 @@
                 />
               </td>
               <td class="tr__total">
-                <span>Rs. {{ item.price * item.number }}</span>
+                <span>$ {{ item.price * item.number }}</span>
                 <img
                   class="icon-del"
                   src="@/assets/cart-index/icon-del.png"
@@ -54,13 +54,15 @@
           <p class="total">${{ totalPrice }}</p>
         </div>
 
-         <button @click="$link('/checkoutIndex')">Check Out</button>
+        <button @click="$link('/checkoutIndex')">Check Out</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState, mapGetters, mapMutations } from "vuex";
+import { IBanners } from "@/api/shop-index/index.js";
 import BreadcrumbNav from "@/components/BreadcrumbNav.vue";
 
 export default {
@@ -73,6 +75,40 @@ export default {
         { name: "Cart", path: "/cartIndex" },
       ],
     };
+  },
+  computed: {
+    ...mapState({
+      data: (state) => state.cart,
+    }),
+
+    ...mapGetters({
+      totalPrice: "cart/totalPrice",
+    }),
+  },
+  methods: {
+    ...mapMutations({
+      delCart: "cart/delCart",
+      editCart: "cart/editCart",
+    }),
+
+    /**
+     * 获取封面图
+     */
+    getBanners() {
+      IBanners({ page: "cartIndex" }).then((res) => {
+        this.banners = res;
+      });
+    },
+
+    /**
+     * 修改购物车数量
+     */
+    handleInput(e, index) {
+      this.editCart({ index, number: Number(e) });
+    },
+  },
+  mounted() {
+    this.getBanners();
   },
 };
 </script>
@@ -161,8 +197,15 @@ export default {
             vertical-align: middle;
 
             td {
-              color: #9f9f9f;
               text-align: left;
+              padding-bottom: 5px;
+              padding-left: 40px;
+              color: #9f9f9f;
+
+               p {
+                font-size: 13px;
+              
+              }
             }
 
             .tr__total {
@@ -170,15 +213,14 @@ export default {
 
               span {
                 line-height: 16px;
-                display: inline-block;
               }
             }
 
             .icon-photo {
-              margin-right: 34px;
-              width: 105px;
+              margin-right: 20px;
+              margin-bottom: 10px;
+              width: 90px;
               height: 95px;
-              display: inline-block;
               vertical-align: middle;
             }
 
@@ -186,7 +228,6 @@ export default {
               margin-left: 50px;
               width: 28px;
               height: 28px;
-              display: inline-block;
               vertical-align: middle;
               cursor: pointer;
             }

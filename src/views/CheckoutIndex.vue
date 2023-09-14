@@ -267,72 +267,72 @@ export default {
     .product__row + .product__row {
       margin-top: 28px;
     }
-   footer {
-            margin-top: 32px;
-            padding-top: 22px;
-            border-top: 1px solid #d9d9d9;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+    footer {
+      margin-top: 32px;
+      padding-top: 22px;
+      border-top: 1px solid #d9d9d9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
-            ul {
-                li::before {
-                    content: '';
-                    margin-right: 15px;
-                    background-image: url('@/assets/icon-circle.png');
-                    background-repeat: no-repeat;
-                    width: 14px;
-                    height: 14px;
-                }
-
-                li {
-                    color: #9f9f9f;
-                    font-size: 16px;
-                    line-height: 24px;
-                    list-style: none;
-                    display: flex;
-                    align-items: center;
-                }
-
-                li + li {
-                    margin-top: 12px;
-                }
-
-                li.selected::before {
-                    background-image: url('@/assets/icon-circle-selected.png');
-                }
-
-                li.selected {
-                    color: #000;
-                }
-
-                p {
-                    margin-top: 10px;
-                    margin-bottom: 25px;
-                    color: #9f9f9f;
-                    font-size: 16px;
-                    line-height: 24px;
-                }
-
-                summary {
-                    margin-top: 22px;
-                    color: #000;
-                    font-size: 16px;
-                    line-height: 24px;
-                    text-align: justify;
-                }
-            }
-
-            button {
-                margin-top: 40px;
-                width: 318px;
-                height: 64px;
-                border-radius: 15px;
-                background-color: transparent;
-                border: 1px solid #000;
-                cursor: pointer;
-            }
+      ul {
+        li::before {
+          content: "";
+          margin-right: 15px;
+          background-image: url("@/assets/icon-circle.png");
+          background-repeat: no-repeat;
+          width: 14px;
+          height: 14px;
         }
+
+        li {
+          color: #9f9f9f;
+          font-size: 16px;
+          line-height: 24px;
+          list-style: none;
+          display: flex;
+          align-items: center;
+        }
+
+        li + li {
+          margin-top: 12px;
+        }
+
+        li.selected::before {
+          background-image: url("@/assets/icon-circle-selected.png");
+        }
+
+        li.selected {
+          color: #000;
+        }
+
+        p {
+          margin-top: 10px;
+          margin-bottom: 25px;
+          color: #9f9f9f;
+          font-size: 16px;
+          line-height: 24px;
+        }
+
+        summary {
+          margin-top: 22px;
+          color: #000;
+          font-size: 16px;
+          line-height: 24px;
+          text-align: justify;
+        }
+      }
+
+      button {
+        margin-top: 40px;
+        width: 318px;
+        height: 64px;
+        border-radius: 15px;
+        background-color: transparent;
+        border: 1px solid #000;
+        cursor: pointer;
+      }
     }
+  }
 }
 </style>

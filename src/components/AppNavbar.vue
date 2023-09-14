@@ -44,11 +44,10 @@
       <router-link to="/searchIndex"
         ><img src="../assets/icon/search.png" alt="Logo"
       /></router-link>
-      <router-link to="/cartIndex"
-        ><img
-          src="../assets/icon/shoppingcart.png"
-          @click="cartDrawer = !cartDrawer"
-      /></router-link>
+      <img
+        src="../assets/icon/shoppingcart.png"
+        @click="cartDrawer = !cartDrawer"
+      />
       <CartDrawer />
     </div>
   </div>
