@@ -21,9 +21,37 @@
           @change="getProducts"
         />
       </div>
-      <div class="logo-and-footer">
-        <img src="../assets/FooterShopp.png" alt="Logo" />
-      </div>
+
+      <footer>
+        <div class="footer__item">
+          <img src="@/assets/shop/icon-quality.png" alt="" />
+          <main>
+            <h4>High Quality</h4>
+            <p>crafted from top materials</p>
+          </main>
+        </div>
+        <div class="footer__item">
+          <img src="@/assets/shop/icon-protection.png" alt="" />
+          <main>
+            <h4>Warranty Protection</h4>
+            <p>Over 2 years</p>
+          </main>
+        </div>
+        <div class="footer__item">
+          <img src="@/assets/shop/icon-shipping.png" alt="" />
+          <main>
+            <h4>Free Shipping</h4>
+            <p>Order over 150 $</p>
+          </main>
+        </div>
+        <div class="footer__item">
+          <img src="@/assets/shop/icon-support.png" alt="" />
+          <main>
+            <h4>24 / 7 Support</h4>
+            <p>Dedicated support</p>
+          </main>
+        </div>
+      </footer>
     </div>
   </section>
 </template>
@@ -126,17 +154,48 @@ export default {
     grid-column-gap: 32px;
   }
 
-  .logo-and-footer {
-    img {
-      max-width: 100%;
-      height: auto;
-    }
-  }
-
   .pagination-button-center {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+  }
+  footer {
+    margin-top: 209px;
+    padding: 0 52px;
+    width: 100%;
+    height: 270px;
+    background: #faf3ea;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .footer__item {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 60px;
+        height: 60px;
+      }
+
+      main {
+        margin-left: 10px;
+
+        h4 {
+          color: #242424;
+          font-size: 25px;
+          line-height: 36px;
+        }
+
+        p {
+          margin-top: 2px;
+          overflow: hidden;
+          color: #898989;
+          font-size: 20px;
+          line-height: 30px;
+        }
+      }
+    }
   }
 }
 </style>
