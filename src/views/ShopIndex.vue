@@ -7,7 +7,7 @@
           <BreadcrumbNav :path="path" />
         </div>
       </div>
-      <div class="index__products">
+      <div class="index__products" v-loading="isLoading">
         <ProductCard
           v-for="(item, index) in products.data"
           :key="index"
@@ -74,6 +74,7 @@ export default {
         { name: "Home", path: "/homeIndex" },
         { name: "Shop", path: "/shopIndex" },
       ],
+      isLoading: false,
       banners: {
         images: [],
       },
@@ -101,9 +102,14 @@ export default {
      * 获取商品列表
      */
     getProducts() {
-      IProductsList(this.cond).then((res) => {
-        this.products = res;
-      });
+      this.isLoading = true; // 在请求开始前显示加载状态
+      IProductsList(this.cond)
+        .then((res) => {
+          this.products = res;
+        })
+        .finally(() => {
+          this.isLoading = false; // 在请求完成后隐藏加载状态
+        });
     },
   },
   mounted() {
@@ -158,6 +164,42 @@ export default {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+  }
+  .loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .loading-spinner {
+      /* 添加加载动画的样式 */
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top: 4px solid #3498db;
+      width: 50px;
+      height: 50px;
+      animation: spin 2s linear infinite;
+    }
+
+    p {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
   }
   footer {
     margin-top: 209px;

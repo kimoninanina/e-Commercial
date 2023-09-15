@@ -13,7 +13,7 @@
       </div>
     </div>
     <h3>Our Products</h3>
-    <div class="index__products">
+    <div class="index__products" v-loading="isLoading">
       <ProductCard
         v-for="(item, index) in products.data"
         :key="index"
@@ -25,6 +25,7 @@
       v-if="products.data.length < products.count"
       @click="showMore"
       class="center-button"
+      :disabled="isLoading"
     >
       Show More
     </button>
@@ -43,6 +44,7 @@ export default {
   data() {
     return {
       backgroundImage: require("@/assets/Backgrounp.jpg"),
+      isLoading: false,
       banners: {
         images: [],
         describe: "",
@@ -63,30 +65,44 @@ export default {
      * 获取新出商品
      */
     getNewProduct() {
-      INewProduct().then((res) => {
-        this.banners = res;
-      });
+      INewProduct()
+        .then((res) => {
+          this.banners = res;
+        })
+        .catch((error) => {
+          console.error("Error fetching new product:", error);
+        });
     },
 
     /**
      * 获取商品列表
      */
     getProducts() {
-      IOurProducts(this.cond).then((res) => {
-        this.products = res;
-        console.log(res);
-      });
+      return IOurProducts(this.cond)
+        .then((res) => {
+          this.products = res;
+        })
+        .catch((error) => {
+          console.error("Error fetching products:", error);
+        });
     },
 
     /**
      * 展示更多
      */
     showMore() {
+      this.isLoading = true;
       this.cond.page++;
 
-      IOurProducts(this.cond).then((res) => {
-        this.products.data.push(...res.data);
-      });
+      IOurProducts(this.cond)
+        .then((res) => {
+          this.products.data.push(...res.data);
+          this.isLoading = false;
+        })
+        .catch((error) => {
+          console.error("Error fetching more products:", error);
+          this.isLoading = false;
+        });
     },
 
     /**
@@ -97,8 +113,16 @@ export default {
     },
   },
   mounted() {
+    this.isLoading = true; // 在请求开始前显示加载动画
     this.getNewProduct();
-    this.getProducts();
+    this.getProducts()
+      .then(() => {
+        this.isLoading = false; // 在请求完成后隐藏加载动画
+      })
+      .catch((error) => {
+        console.error("Error during component initialization:", error);
+        this.isLoading = false; // 隐藏加载动画以防止卡住
+      });
   },
 };
 </script>
