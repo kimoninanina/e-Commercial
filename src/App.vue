@@ -9,13 +9,22 @@
 <script>
 import AppFooter from "./components/AppFooter.vue";
 import AppNavbar from "./components/AppNavbar.vue";
+import { IToken } from "@/api/csrf-token/index.js";
 
 export default {
   name: "App",
   components: {
     AppNavbar,
-    AppFooter
-  }
+    AppFooter,
+  },
+  mounted() {
+    /**
+     * 获取 CSRF Token
+     */
+    IToken().then((res) => {
+      localStorage.setItem("token", res);
+    });
+  },
 };
 </script>
 
@@ -30,6 +39,6 @@ export default {
 }
 
 body {
-  margin: 0!important;
+  margin: 0 !important;
 }
 </style>
