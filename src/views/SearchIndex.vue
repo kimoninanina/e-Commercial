@@ -18,13 +18,14 @@
             type="text"
             placeholder="Search for your item"
             v-model="searchQuery"
+            @keyup.enter="handleSearch"
           />
         </div>
       </div>
     </div>
 
     <div class="search-results">
-      <div v-if="searchResults.length === 0">No results found.</div>
+      <p v-if="searchResults.length === 0">No results found.</p>
       <div v-else>
         <ProductCard
           v-for="(product, index) in searchResults"
@@ -164,6 +165,14 @@ export default {
           height: 24px;
         }
       }
+    }
+  }
+  .search-results {
+    position: relative;
+    width: 300px;
+
+    p {
+      margin: 50px;
     }
   }
 }
