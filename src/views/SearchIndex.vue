@@ -18,9 +18,19 @@
             type="text"
             placeholder="Search for your item"
             v-model="searchQuery"
-            @input="handleInput"
           />
         </div>
+      </div>
+    </div>
+
+    <div class="search-results">
+      <div v-if="searchResults.length === 0">No results found.</div>
+      <div v-else>
+        <ProductCard
+          v-for="(product, index) in searchResults"
+          :key="index"
+          :data="product"
+        />
       </div>
     </div>
   </div>
@@ -28,32 +38,42 @@
 
 <script>
 import BreadcrumbNav from "@/components/BreadcrumbNav.vue";
+import ProductCard from "../components/ProductCard.vue"; // 导入 ProductCard 组件
+import { IOurProducts } from "@/api/home-index/index.js";
 
 export default {
-  components: { BreadcrumbNav },
+  components: { BreadcrumbNav, ProductCard }, // 注册 ProductCard 组件
   data() {
     return {
-      input: 1,
       path: [
         { name: "Home", path: "/homeIndex" },
-        { name: "Search", path: "/searchIndex" },
+        { name: "Search", path: "/search" },
       ],
       searchQuery: "",
-      searchResults: [], // Store search results here
+      searchResults: [],
+      cond: {
+        page: 1,
+        pageSize: 10,
+      },
     };
   },
   methods: {
-    search() {
-      // Implement search logic here
-      // Populate this.searchResults with the search results
-    },
-    handleInput() {
-      // Handle input changes if needed
-    },
-    handleSearch() {
-      // Trigger the search action when the button is clicked
-      //  emit an event or call a method to perform the search
-      this.$emit("search", this.searchQuery);
+    async handleSearch() {
+      // Make an API request to fetch all products and filter results
+      try {
+        const response = await IOurProducts(this.cond);
+        const allProducts = response.data;
+
+        // Filter products based on the search query
+        const filteredProducts = allProducts.filter((product) =>
+          product.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+        );
+
+        // Update the search results
+        this.searchResults = filteredProducts;
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
     },
   },
 };

@@ -39,7 +39,7 @@
           <div class="form-group">
             <label for="password"
               >Password
-              <a href="#" class="forgot-link">Forgot Password?</a></label
+            </label
             >
             <input type="password" id="password" v-model="password" />
           </div>
@@ -59,7 +59,7 @@
                 <a
                   href="#"
                   @click="setMode(mode === 'login' ? 'register' : 'login')"
-                  >{{ mode === "login" ? "Sign up" : "Sign in" }}</a
+                  >{{ mode === "login" ? "Register" : "Sign in" }}</a
                 >
               </p>
             </div>
