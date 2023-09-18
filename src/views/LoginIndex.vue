@@ -29,7 +29,10 @@
           </button>
         </div>
 
-        <span>Welcome back !!!</span>
+        <span v-if="isLoggedIn" class="form-successful-login"
+          >Login successful! Welcome back!!!</span
+        >
+        <span v-else>Welcome back !!!</span>
         <h2>{{ mode === "login" ? "Sign In" : "Register" }}</h2>
         <form>
           <div class="form-group">
@@ -37,17 +40,13 @@
             <input type="text" id="email" v-model="email" />
           </div>
           <div class="form-group">
-            <label for="password"
-              >Password
-            </label
-            >
+            <label for="password">Password</label>
             <input type="password" id="password" v-model="password" />
           </div>
 
           <div class="info__form">
             <div class="button-container">
-              <!-- 根据模式渲染不同的按钮文本 -->
-              <button @click="mode === 'login' ? login : register">
+              <button @click="mode === 'login' ? login() : register()">
                 {{ mode === "login" ? "Sign In" : "Register" }}
               </button>
               <p>
@@ -56,11 +55,9 @@
                     ? "I don't have an account?"
                     : "Already have an account?"
                 }}
-                <a
-                  href="#"
-                  @click="setMode(mode === 'login' ? 'register' : 'login')"
-                  >{{ mode === "login" ? "Register" : "Sign in" }}</a
-                >
+                <a @click="setMode(mode === 'login' ? 'register' : 'login')">{{
+                  mode === "login" ? "Register" : "Sign in"
+                }}</a>
               </p>
             </div>
           </div>
@@ -75,12 +72,12 @@
 
 <script>
 import BreadcrumbNav from "@/components/BreadcrumbNav.vue";
+import { IToken } from "@/api/csrf-token";
 
 export default {
   components: { BreadcrumbNav },
   data() {
     return {
-      input: 1,
       path: [
         { name: "Home", path: "/homeIndex" },
         { name: "Login", path: "/LoginIndex" },
@@ -88,6 +85,7 @@ export default {
       mode: "login", // 初始模式为登录
       email: "",
       password: "",
+      isLoggedIn: false, // 登录状态
     };
   },
   methods: {
@@ -96,7 +94,13 @@ export default {
       this.mode = selectedMode;
     },
     login() {
-      // 处理登录逻辑
+      // 模拟登录请求
+      IToken().then((res) => {
+        localStorage.setItem("token", res);
+        this.isLoggedIn = true; // 登录成功后设置登录状态
+        console.log('abc')
+      });
+      // 模拟登录延迟，您可以根据实际情况调整
     },
     register() {
       // 处理注册逻辑
@@ -136,6 +140,7 @@ export default {
   align-items: center;
   height: 100vh;
   text-align: left;
+  margin-top: 20px;
   .toggle-button {
     margin-top: 30px;
     padding-bottom: 30px;
@@ -188,6 +193,12 @@ export default {
         border-radius: 4px;
         background-color: #fff6f4; /* 设置填充颜色 */
         margin-bottom: 20px;
+      }
+
+      span .form-successful-login {
+        color: #b88e2f;
+        font-size: 20px;
+        font-weight: bold;
       }
     }
     .info__form {
@@ -245,5 +256,10 @@ export default {
 
 .button-signin.active:hover {
   background-color: #bd741a; /* 添加悬停时的背景颜色 */
+}
+span.form-successful-login {
+  color: #b88e2f;; 
+  font-size: 20px;
+  font-weight: bold;
 }
 </style>

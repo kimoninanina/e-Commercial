@@ -9,7 +9,7 @@
 <script>
 import AppFooter from "./components/AppFooter.vue";
 import AppNavbar from "./components/AppNavbar.vue";
-import { IToken } from "@/api/csrf-token/index.js";
+// import { IToken } from "@/api/csrf-token/index.js";
 
 export default {
   name: "App",
@@ -18,12 +18,12 @@ export default {
     AppFooter,
   },
   mounted() {
-    /**
-     * 获取 CSRF Token
-     */
-    IToken().then((res) => {
-      localStorage.setItem("token", res);
-    });
+    // /**
+    //  * 获取 CSRF Token
+    //  */
+    // IToken().then((res) => {
+    //   localStorage.setItem("token", res);
+    // });
   },
 };
 </script>
