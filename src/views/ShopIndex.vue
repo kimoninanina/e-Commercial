@@ -27,7 +27,7 @@
           <img src="@/assets/shop/icon-quality.png" alt="" />
           <main>
             <h4>High Quality</h4>
-            <p>crafted from top materials</p>
+            <p>Crafted from top materials</p>
           </main>
         </div>
         <div class="footer__item">
@@ -41,7 +41,7 @@
           <img src="@/assets/shop/icon-shipping.png" alt="" />
           <main>
             <h4>Free Shipping</h4>
-            <p>Order over 150 $</p>
+            <p>Order over $150</p>
           </main>
         </div>
         <div class="footer__item">
@@ -209,7 +209,6 @@ export default {
     background: #faf3ea;
     display: flex;
     justify-content: space-between;
-    align-items: center;
 
     .footer__item {
       display: flex;
@@ -235,6 +234,49 @@ export default {
           color: #898989;
           font-size: 20px;
           line-height: 30px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .shop-container {
+    .index__products {
+      margin-top: 70px;
+      padding: 0 16px; /* 调整内边距 */
+      grid-template-columns: 1fr; /* 设置单列布局 */
+      grid-row-gap: 16px; /* 调整行间距 */
+      grid-column-gap: 16px; /* 调整列间距 */
+    }
+
+    footer {
+      margin-top: 70px; /* 调整底部间距 */
+      padding: 0 16px; /* 调整内边距 */
+      flex-direction: column; /* 修改为垂直排列 */
+
+      .footer__item {
+        margin-bottom: 20px; /* 调整每个项目的底部间距 */
+        display: flex; /* 添加此行 */
+        
+
+        img {
+          width: 40px; /* 调整图片大小 */
+          height: 40px; /* 调整图片大小 */
+        }
+
+        main {
+          margin-left: 10px;
+
+          h4 {
+            font-size: 20px; /* 调整标题字体大小 */
+            line-height: 30px; /* 调整标题行高 */
+          }
+
+          p {
+            margin-top: 2px;
+            font-size: 16px; /* 调整文本字体大小 */
+            line-height: 24px; /* 调整文本行高 */
+          }
         }
       }
     }
