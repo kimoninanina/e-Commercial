@@ -80,7 +80,6 @@
                 your Order ID as the payment reference. Your order will not be
                 shipped until the funds have cleared in our account.
               </p>
-              <li>Direct Bank Transfer</li>
               <li>Cash On Delivery</li>
               <summary>
                 Your personal data will be used to support your experience
@@ -331,6 +330,14 @@ export default {
         background-color: transparent;
         border: 1px solid #000;
         cursor: pointer;
+        transition: background-color 0.3s ease; /* 添加过渡效果 */
+        &:hover {
+          background-color: #edcea8; /* 悬停时的背景颜色 */
+        }
+
+        &:active {
+          background-color: #c2955f; /* 点击时的背景颜色 */
+        }
       }
     }
   }
