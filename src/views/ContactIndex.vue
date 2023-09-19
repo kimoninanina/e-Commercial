@@ -224,4 +224,61 @@ export default {
     }
   }
 }
+@media screen and (max-width: 768px) {
+  .contact-index {
+    h1 {
+      font-size: 32px; /* 调整标题字体大小 */
+      line-height: 48px; /* 调整标题行高 */
+    }
+
+    .index__banner {
+      height: 200px; /* 调整顶部横幅高度 */
+    }
+
+    > .el-row {
+      padding: 0 20px; /* 调整水平内边距 */
+    }
+
+    .index__info {
+      margin-top: 30px; /* 调整信息部分顶部间距 */
+      flex-direction: column; /* 修改为垂直排列 */
+
+      .info__details {
+        padding: 20px; /* 调整信息详情内边距 */
+        width: 100%; /* 让信息详情铺满整个宽度 */
+
+        .details__item {
+          position: relative;
+
+          img {
+            position: absolute;
+            left: 0;
+            top: -30px; /* 调整图像位置 */
+          }
+
+          .item__title {
+            font-size: 20px; /* 调整标题字体大小 */
+            line-height: 30px; /* 调整标题行高 */
+          }
+
+          p {
+            font-size: 14px; /* 调整文本字体大小 */
+            line-height: 20px; /* 调整文本行高 */
+          }
+        }
+      }
+
+      .info__form {
+        margin-left: 0; /* 取消左侧边距 */
+        padding: 20px; /* 调整表单内边距 */
+        width: 100%; /* 让表单铺满整个宽度 */
+
+        button {
+          margin-top: 20px; /* 调整按钮上边距 */
+          width: 100%; /* 让按钮铺满父容器宽度 */
+        }
+      }
+    }
+  }
+}
 </style>

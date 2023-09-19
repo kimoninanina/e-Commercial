@@ -176,4 +176,19 @@ export default {
     }
   }
 }
+@media screen and (max-width: 768px) {
+  .search-page {
+    .search-content {
+      flex-direction: column; /* 在小屏幕上垂直排列内容 */
+      padding: 20px; /* 调整内边距，根据需要调整大小 */
+      align-items: initial !important;
+
+      .search-image {
+        max-width: 100%; /* 图片宽度占满父容器 */
+        margin-right: 0; /* 移除右侧间距 */
+        margin-bottom: 20px; /* 添加底部间距 */
+      }
+    }
+  }
+}
 </style>

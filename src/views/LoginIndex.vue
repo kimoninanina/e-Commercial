@@ -98,7 +98,7 @@ export default {
       IToken().then((res) => {
         localStorage.setItem("token", res);
         this.isLoggedIn = true; // 登录成功后设置登录状态
-        console.log('abc')
+        console.log("abc");
       });
       // 模拟登录延迟，您可以根据实际情况调整
     },
@@ -258,8 +258,46 @@ export default {
   background-color: #bd741a; /* 添加悬停时的背景颜色 */
 }
 span.form-successful-login {
-  color: #b88e2f;; 
+  color: #b88e2f;
   font-size: 20px;
   font-weight: bold;
+}
+@media screen and (max-width: 768px) {
+  .login-container {
+    flex-direction: column-reverse; /* 在小屏幕上垂直排列内容 */
+    margin-bottom: 150px; /* 底部容器的高度，确保不重叠 */
+
+    .toggle-button {
+      margin-top: 20px; /* 调整按钮上边距 */
+      margin-left: 0; /* 取消左侧边距 */
+      flex-direction: row; /* 水平排列按钮 */
+      justify-content: center; /* 居中对齐按钮 */
+
+      button {
+        margin: 0 10px; /* 调整按钮间的间距 */
+      }
+    }
+    .login-image {
+      flex: 1;
+      padding-top: 130px;
+
+      img {
+        max-width: 100%;
+        height: 200px;
+      }
+    }
+    .login-form {
+      border-right: none; /* 移除右侧边框 */
+      border-bottom: 1px solid #ccc; /* 添加底部边框 */
+      padding-bottom: 100px; /* 调整底部内边距 */
+
+      h2 {
+        font-size: 36px; /* 调整标题字体大小 */
+      }
+      .info__form {
+        padding-right: 60px;
+      }
+    }
+  }
 }
 </style>
