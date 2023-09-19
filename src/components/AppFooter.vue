@@ -2,7 +2,7 @@
   <footer class="footer">
     <div class="upper-footer">
       <div class="funiro-info">
-        Funiro.<br />
+        Nina.<br />
         400 University Drive Suite 200<br />
         Coral Gables, FL 33134<br />
         USA
@@ -37,7 +37,7 @@
     <div class="lower-footer">
       <div class="line"></div>
       <div class="rights">
-        <p>2023 Funiro. All rights reserved.</p>
+        <p>2023 Nina. All rights reserved.</p>
       </div>
     </div>
   </footer>

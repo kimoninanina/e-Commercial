@@ -1,0 +1,24 @@
+
+@media screen and (max-width: 768px) {
+    /* 在这里定义针对小屏幕的样式规则 */
+    body {
+      font-size: 14px;
+    }
+  }
+  
+  /* 媒体查询：针对中等屏幕设备（iPad） */
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    /* 在这里定义针对iPad的样式规则 */
+    body {
+      font-size: 16px;
+    }
+  }
+  
+  /* 媒体查询：针对大屏幕设备（桌面） */
+  @media screen and (min-width: 1025px) {
+    /* 在这里定义针对大屏幕的样式规则 */
+    body {
+      font-size: 18px;
+    }
+  }
+  

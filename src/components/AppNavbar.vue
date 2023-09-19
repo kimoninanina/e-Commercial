@@ -1,67 +1,69 @@
 <template>
   <div class="navbar-container">
-    <div class="logo-and-title">
-      <img src="../assets/icon/Frame.png" alt="Logo" />
+    <!-- 移动设备上的汉堡菜单按钮 -->
+    <div class="mobile-menu-button-container">
+      <button class="mobile-menu-button" @click="toggleMobileMenu">
+        <img
+          src="@/assets/icon/hamburger-menu-filled-icon.jpeg"
+          alt="Mobile Menu"
+        />
+      </button>
     </div>
+
+    <!-- Logo 和标题 -->
+    <div class="logo-and-title">
+      <img src="@/assets/icon/Frame.png" alt="Logo" class="logo" />
+    </div>
+
+    <!-- 移动设备上的菜单 -->
+    <div class="mobile-menu" :class="{ 'mobile-menu-active': mobileMenuOpen }">
+      <span
+        v-for="(link, index) in mobileLinks"
+        :key="index"
+        @click="linkAction(link.path)"
+        @keydown.enter="linkAction(link.path)"
+      >
+        {{ link.text }}
+      </span>
+    </div>
+
     <div class="nav-links">
       <span
-        role="link"
-        tabindex="0"
-        @click="link('/homeIndex')"
-        @keydown.enter="link('/homeIndex')"
+        v-for="(link, index) in desktopLinks"
+        :key="index"
+        @click="linkAction(link.path)"
+        @keydown.enter="linkAction(link.path)"
+        :class="link.class"
       >
-        Home
-      </span>
-      <span
-        role="link"
-        tabindex="0"
-        @click="link('/shopIndex')"
-        @keydown.enter="link('/shopIndex')"
-      >
-        Shop
-      </span>
-      <span
-        role="link"
-        tabindex="0"
-        @click="link('/aboutIndex')"
-        @keydown.enter="link('/aboutIndex')"
-      >
-        About
-      </span>
-      <span
-        role="link"
-        tabindex="0"
-        @click="link('/contactIndex')"
-        @keydown.enter="link('/contactIndex')"
-      >
-        Contact
+        {{ link.text }}
       </span>
     </div>
+
     <div class="user-actions">
       <router-link to="/loginIndex"
-        ><img src="../assets/icon/account.png" alt="Logo"
+        ><img src="@/assets/icon/account.png" alt="Logo"
       /></router-link>
       <router-link to="/searchIndex"
-        ><img src="../assets/icon/search.png" alt="Logo"
+        ><img src="@/assets/icon/search.png" alt="Logo"
       /></router-link>
       <img
-        src="../assets/icon/shoppingcart.png"
+        src="@/assets/icon/shoppingcart.png"
         @click="cartDrawer = !cartDrawer"
       />
       <CartDrawer />
     </div>
   </div>
 </template>
+
 <script>
 import CartDrawer from "./CartDrawer.vue";
 
 export default {
   components: { CartDrawer },
-  methods: {
-    link(path) {
-      if (this.$route.path === path) return;
-      this.$router.push(path);
-    },
+  data() {
+    return {
+      mobileMenuOpen: false,
+    };
   },
   computed: {
     cartDrawer: {
@@ -72,10 +74,35 @@ export default {
         this.$store.commit("cart/showCart", val);
       },
     },
+    mobileLinks() {
+      return [
+        { text: "Home", path: "/homeIndex" },
+        { text: "Shop", path: "/shopIndex" },
+        { text: "About", path: "/aboutIndex" },
+        { text: "Contact", path: "/contactIndex" },
+      ];
+    },
+    desktopLinks() {
+      return [
+        { text: "Home", path: "/homeIndex", class: "router-link" },
+        { text: "Shop", path: "/shopIndex", class: "router-link" },
+        { text: "About", path: "/aboutIndex", class: "router-link" },
+        { text: "Contact", path: "/contactIndex", class: "router-link" },
+      ];
+    },
+  },
+  methods: {
+    linkAction(path) {
+      if (this.$route.path === path) return;
+      this.$router.push(path);
+      this.mobileMenuOpen = false;
+    },
+    toggleMobileMenu() {
+      this.mobileMenuOpen = !this.mobileMenuOpen;
+    },
   },
 };
 </script>
-
 <style scoped lang="scss">
 .navbar-container {
   display: flex;
@@ -85,33 +112,62 @@ export default {
   height: 100px;
 
   .logo-and-title {
-    display: flex;
-    align-items: center;
-
     .logo {
-      width: 60px;
-      height: 60px;
-
+      height: 30px;
       img {
         width: 100%;
         height: 100%;
         object-fit: contain;
       }
     }
+  }
 
-    .title {
-      font-size: 24px;
-      margin-left: 10px;
-      font-weight: bold;
-      color: #333;
+  /* 移动设备导航按钮容器样式 */
+  .mobile-menu-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 靠左对齐 */
+  }
+
+  /* 移动设备导航按钮样式 */
+  .mobile-menu-button {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+
+    img {
+      width: 50px;
+      height: 50px;
     }
+  }
+
+  /* 移动设备导航菜单样式 */
+  .mobile-menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    transform: translateX(-100%);
+  }
+
+  /* 激活移动设备导航菜单的样式 */
+  .mobile-menu-active {
+    display: block;
+    transform: translateX(0);
   }
 
   .nav-links {
     display: flex;
     justify-content: space-between;
-    width: 400px; 
-    margin: 0 auto; 
+    width: 400px;
+    margin: 0 auto;
     color: black;
     font-size: 16px;
     line-height: 16px;
@@ -122,7 +178,7 @@ export default {
     &.router-link-exact-active,
     &.router-link {
       text-decoration: none;
-      color: black; 
+      color: black;
     }
   }
 
@@ -136,6 +192,39 @@ export default {
       width: 28px;
       height: 28px;
       cursor: pointer;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .user-actions {
+      display: flex;
+      gap: 10px;
+      margin-left: 10px;
+      margin-right: 10px;
+
+      img {
+        width: 28px;
+        height: 28px;
+        cursor: pointer;
+      }
+    }
+
+    /* 移动设备导航菜单链接的样式 */
+    .mobile-menu span {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* 响应式设计：在小屏幕上显示移动设备导航按钮 */
+    .mobile-menu-button {
+      display: block;
+    }
+
+    /* 隐藏桌面导航链接 */
+    .nav-links {
+      display: none;
     }
   }
 }

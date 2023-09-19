@@ -185,6 +185,11 @@ export default {
       .button-wrapper {
         padding-top: 40px;
       }
+      @media screen and (max-width: 768px) {
+        .button-wrapper {
+          padding-top: 80px; /* 将padding-top的值修改为80px */
+        }
+      }
 
       .shop-link {
         display: inline-block;
@@ -214,6 +219,15 @@ export default {
     grid-row-gap: 32px;
     grid-column-gap: 32px;
   }
+  @media screen and (max-width: 768px) {
+    .index__products {
+      padding: 0 20px; /* 调整内边距 */
+      grid-template-columns: 1fr; /* 设置单列布局 */
+      grid-row-gap: 16px; /* 调整行间距 */
+      grid-column-gap: 16px; /* 调整列间距 */
+    }
+  }
+
   button {
     margin-top: 32px;
     width: 245px;
