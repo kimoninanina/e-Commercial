@@ -1,6 +1,13 @@
 # Nina'a e-Commerical Project
 website
-https://nina.noxussj.top/#/homeIndex
+https://nina.noxussj.top
+
+### WireFrame:
+https://www.figma.com/file/Js3k5PKjLIV3TMAqVpCA65/Online-shipping-website?type=design&node-id=0-1&mode=design&t=txCV2zWG04jCsudG-0
+
+### API Documents:
+https://app.apifox.com/project/3229950
+
 
 ## Project setup
 ```
@@ -21,5 +28,4 @@ yarn build
 ```
 yarn lint
 ```
-### WireFrame:
-https://www.figma.com/file/Js3k5PKjLIV3TMAqVpCA65/Online-shipping-website?type=design&node-id=0-1&mode=design&t=txCV2zWG04jCsudG-0
+
