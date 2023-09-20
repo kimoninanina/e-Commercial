@@ -255,27 +255,28 @@ export default {
       flex-direction: column; /* 修改为垂直排列 */
 
       .footer__item {
+        padding-top: 5px;
+        padding-bottom: 5px;
         margin-bottom: 20px; /* 调整每个项目的底部间距 */
         display: flex; /* 添加此行 */
-        
 
         img {
-          width: 40px; /* 调整图片大小 */
-          height: 40px; /* 调整图片大小 */
+          width: 25px; /* 调整图片大小 */
+          height: 25px; /* 调整图片大小 */
         }
 
         main {
           margin-left: 10px;
 
           h4 {
-            font-size: 20px; /* 调整标题字体大小 */
-            line-height: 30px; /* 调整标题行高 */
+            font-size: 18px; /* 调整标题字体大小 */
+            line-height: 18px; /* 调整标题行高 */
           }
 
           p {
-            margin-top: 2px;
-            font-size: 16px; /* 调整文本字体大小 */
-            line-height: 24px; /* 调整文本行高 */
+            margin-top: 5px;
+            font-size: 15px; /* 调整文本字体大小 */
+            line-height: 20px; /* 调整文本行高 */
           }
         }
       }

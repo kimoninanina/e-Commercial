@@ -1,7 +1,7 @@
 <template>
   <div class="shop-index">
     <div class="index__breadcrumb">
-      <BreadcrumbNav :path="path" end="Asgaard sofa" />
+      <BreadcrumbNav :path="path" :end="data.name" />
     </div>
 
     <div class="index__good">

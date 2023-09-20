@@ -312,6 +312,7 @@ export default {
         table {
           thead {
             th {
+              padding-left: 34px;
               font-size: 14px; /* 减小表头字体大小 */
             }
           }
@@ -346,7 +347,7 @@ export default {
       }
 
       .products__totals {
-        margin-left: 10px; /* 调整总计部分的左边距 */
+        margin-left: 0; /* 调整总计部分的左边距 */
         width: auto; /* 让宽度自适应 */
         height: auto; /* 让高度自适应 */
 
