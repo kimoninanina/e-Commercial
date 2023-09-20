@@ -132,8 +132,9 @@ export default {
 <style lang="scss" scoped>
 .shop-index {
   background-color: white;
+
   .index__breadcrumb {
-    padding: 0 102px;
+    padding: 0 2rem;
     height: 100px;
     background: #f9f1e7;
     display: flex;
@@ -141,105 +142,116 @@ export default {
   }
 
   .index__good {
-    margin-top: 42px;
-    padding: 0 102px;
+    margin-top: 5rem;
+    padding: 0 2rem;
     display: flex;
 
+    @media (max-width: 768px) {
+      flex-direction: column; // 在手机端时，改为垂直排列
+      margin-top: 0.5rem !important;
+    }
+
     .good__info {
-      margin-left: 106px;
-      width: 424px;
+      margin-left: 5rem;
+      width: 70%;
+      @media (max-width: 768px) {
+        margin-left: 0.5rem !important;
+      }
 
       h1 {
         color: #000;
         font-weight: bold;
-        font-size: 42px;
-        line-height: 62px;
+        font-size: 2rem;
+        line-height: 3rem;
         text-align: left;
-        margin-bottom: 0px;
+        margin-bottom: 0;
       }
-
       .info__price {
         color: #9f9f9f;
-        font-size: 24px;
-        line-height: 36px;
+        font-size: 1.5rem;
+        line-height: 2.25rem;
         text-align: left;
       }
 
       p {
-        margin-top: 52px;
+        margin-top: 1.5rem;
         color: #000;
-        font-size: 13px;
-        line-height: 20px;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
         text-align: left;
       }
 
       h5 {
-        margin-top: 18px;
-        margin-bottom: 12px;
+        margin-top: 0.75rem;
+        margin-bottom: 0.5rem;
         color: #9f9f9f;
-        font-size: 14px;
-        line-height: 22px;
+        font-size: 1rem;
+        line-height: 1.5rem;
         font-weight: normal;
         text-align: left;
       }
     }
+
     .button-group {
-      display: flex;
-      justify-content: left;
-    }
-    .info__colors {
       display: flex;
       justify-content: flex-start;
     }
 
-    .info__colors button {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      margin-left: 0px;
-    }
+    .info__colors {
+      display: flex;
+      justify-content: flex-start;
+      margin-top: 1rem;
 
-    .info__colors button + button {
-      margin-left: 16px;
+      button {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        margin-left: 0;
+      }
+
+      button + button {
+        margin-left: 1rem;
+      }
     }
 
     .info__count {
-      margin-top: 32px;
+      margin-top: 2rem;
       display: flex;
-    }
+      align-items: center;
 
-    button {
-      margin-left: 18px;
-      width: 215px;
-      height: 64px;
-      font-size: 20px;
-      color: #000;
-      background-color: #fff;
-      border-radius: 15px;
-      border: 1px solid #000;
-    }
+      button {
+        margin-left: 18px;
+        width: 215px;
+        height: 64px;
+        font-size: 20px;
+        color: #000;
+        background-color: #fff;
+        border-radius: 15px;
+        border: 1px solid #000;
+      }
 
-    button:hover {
-      cursor: pointer;
+      button:hover {
+        cursor: pointer;
+      }
     }
 
     .info__describe {
-      margin-top: 60px;
-      margin-bottom: 120px;
-      padding-top: 40px;
+      margin-top: 3rem;
+      margin-bottom: 6rem;
+      padding-top: 2rem;
       border-top: 1px solid #d9d9d9;
       display: flex;
       flex-direction: column;
 
       .describe__item {
         color: #9f9f9f;
-        font-size: 16px;
-        line-height: 24px;
+        font-size: 1rem;
+        line-height: 1.5rem;
         display: flex;
         text-align: left;
 
         .item__name {
-          width: 90px;
+          width: 4rem;
         }
 
         .item__value::before {
@@ -251,18 +263,18 @@ export default {
           align-items: center;
 
           img {
-            width: 20px;
-            height: 20px;
+            width: 1.25rem;
+            height: 1.25rem;
           }
 
           img + img {
-            margin-left: 25px;
+            margin-left: 1rem;
           }
         }
       }
 
       .describe__item + .describe__item {
-        margin-top: 12px;
+        margin-top: 0.75rem;
       }
     }
   }
