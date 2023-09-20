@@ -6,7 +6,7 @@
     </div>
 
     <el-row :gutter="26" :style="{ marginTop: '62px' }">
-      <el-col :span="12">
+      <el-col :xs="24" :span="12">
         <div class="index__details">
           <h2>Billing details</h2>
 
@@ -49,7 +49,7 @@
         </div>
       </el-col>
 
-      <el-col :span="12">
+      <el-col :xs="24" :span="12">
         <div class="index__product">
           <div class="product__row">
             <h3>Product</h3>
@@ -215,6 +215,9 @@ export default {
   > .el-row {
     padding: 0 100px;
     width: 100%;
+    @media screen and (max-width: 768px) {
+      padding: 0 0 0;
+    }
   }
   .base__banner {
     width: 100%;
@@ -235,6 +238,9 @@ export default {
 
   .index__details {
     padding: 35px 78px 70px;
+    @media screen and (max-width: 768px) {
+      padding: 0 0 0;
+    }
   }
 
   .index__product {
