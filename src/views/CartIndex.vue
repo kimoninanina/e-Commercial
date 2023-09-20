@@ -295,4 +295,83 @@ export default {
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .cart-index {
+    .index__banner {
+      h1 {
+        font-size: 32px; /* 减小标题字体大小 */
+        line-height: 48px;
+      }
+    }
+
+    .index__products {
+      padding: 0 0;
+      flex-direction: column;
+      .products__table {
+        table {
+          thead {
+            th {
+              font-size: 14px; /* 减小表头字体大小 */
+            }
+          }
+
+          tbody {
+            tr {
+              td {
+                font-size: 14px; /* 减小表格内容字体大小 */
+                padding-top: 20px; /* 减小上边距 */
+              }
+
+              .tr__total {
+                span {
+                  font-size: 16px; /* 调整总价字体大小 */
+                }
+
+                .icon-del {
+                  margin-left: 20px; /* 调整删除图标的左边距 */
+                }
+
+                .el-input {
+                  width: 50px; /* 调整输入框宽度 */
+                  :deep(.el-input__inner) {
+                    height: 28px; /* 调整输入框高度 */
+                    line-height: 28px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .products__totals {
+        margin-left: 10px; /* 调整总计部分的左边距 */
+        width: auto; /* 让宽度自适应 */
+        height: auto; /* 让高度自适应 */
+
+        h2 {
+          font-size: 24px; /* 减小总计标题字体大小 */
+          margin-bottom: 20px; /* 调整标题下边距 */
+        }
+
+        .totals__row {
+          span {
+            font-size: 14px; /* 减小文字字体大小 */
+          }
+
+          p.total {
+            font-size: 18px; /* 调整总价字体大小 */
+          }
+        }
+
+        button {
+          margin-top: 30px; /* 调整按钮上边距 */
+          width: 100%; /* 让按钮宽度充满父元素 */
+          max-width: 222px; /* 设置按钮最大宽度 */
+        }
+      }
+    }
+  }
+}
 </style>

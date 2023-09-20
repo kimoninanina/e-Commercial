@@ -35,7 +35,7 @@
       </div>
 
       <div class="footer__button-group">
-         <button @click="$link('/cartIndex')">Cart</button>
+        <button @click="$link('/cartIndex')">Cart</button>
         <button @click="$link('/checkoutIndex')">Checkout</button>
       </div>
     </footer>
@@ -205,6 +205,12 @@ export default {
         }
       }
     }
+  }
+}
+@media screen and (max-width: 768px) {
+  :deep(.el-drawer) {
+    height: auto !important;
+    width: 80% !important;
   }
 }
 </style>
