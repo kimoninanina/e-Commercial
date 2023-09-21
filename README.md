@@ -7,7 +7,8 @@ https://www.figma.com/file/Js3k5PKjLIV3TMAqVpCA65/Online-shipping-website?type=d
 
 ### API Documents:
 https://app.apifox.com/project/3229950
-
+## animation 
+https://animate.style/
 
 ## Project setup
 ```
