@@ -11,7 +11,7 @@
     </div>
 
     <!-- Logo 和标题 -->
-    <div class="logo-and-title">
+    <div class="logo-and-title animate__animated animate__wobble">
       <img src="@/assets/icon/Frame.png" alt="Logo" class="logo" />
     </div>
 
@@ -41,10 +41,22 @@
 
     <div class="user-actions">
       <router-link to="/loginIndex"
-        ><img src="@/assets/icon/account.png" alt="Logo"
+        ><img
+          src="@/assets/icon/account.png"
+          alt="Logo"
+          @click="toggleAnimation('accountLogo')"
+          :class="{
+            'animate__animated animate__bounce': isAnimated('accountLogo'),
+          }"
       /></router-link>
       <router-link to="/searchIndex"
-        ><img src="@/assets/icon/search.png" alt="Logo"
+        ><img
+          src="@/assets/icon/search.png"
+          alt="Logo"
+          @click="toggleAnimation('searchLogo')"
+          :class="{
+            'animate__animated animate__bounce': isAnimated('searchLogo'),
+          }"
       /></router-link>
       <img
         src="@/assets/icon/shoppingcart.png"
@@ -63,6 +75,7 @@ export default {
   data() {
     return {
       mobileMenuOpen: false,
+      animatedElements: [], 
     };
   },
   computed: {
@@ -99,6 +112,22 @@ export default {
     },
     toggleMobileMenu() {
       this.mobileMenuOpen = !this.mobileMenuOpen;
+    },
+    toggleAnimation(elementName) {
+      if (!this.isAnimated(elementName)) {
+        // 如果元素尚未触发动画，添加到列表并应用动画类
+        this.animatedElements.push(elementName);
+      } else {
+        // 如果元素已经触发动画，从列表中移除它
+        const index = this.animatedElements.indexOf(elementName);
+        if (index !== -1) {
+          this.animatedElements.splice(index, 1);
+        }
+      }
+    },
+    isAnimated(elementName) {
+      // 检查元素是否触发了动画
+      return this.animatedElements.includes(elementName);
     },
   },
 };

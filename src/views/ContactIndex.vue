@@ -70,6 +70,7 @@
 import { IContactInfo, ISubmitContact } from "@/api/contact-index/index.js";
 import BreadcrumbNav from "@/components/BreadcrumbNav.vue";
 
+
 export default {
   components: { BreadcrumbNav },
   data() {
