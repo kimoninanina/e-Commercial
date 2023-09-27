@@ -34,6 +34,7 @@
         @click="linkAction(link.path)"
         @keydown.enter="linkAction(link.path)"
         :class="link.class"
+         tabindex="0"
       >
         {{ link.text }}
       </span>
@@ -75,7 +76,7 @@ export default {
   data() {
     return {
       mobileMenuOpen: false,
-      animatedElements: [], 
+      animatedElements: [],
     };
   },
   computed: {
@@ -210,6 +211,8 @@ export default {
       color: black;
     }
   }
+  
+
 
   .user-actions {
     display: flex;

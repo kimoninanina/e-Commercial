@@ -53,16 +53,18 @@ export default {
     },
 
     /**
-     * 上一页
+     * 上一页 处理点击 "Prev" 按钮时，它会将当前页码减 1
      */
     handlePrev() {
       const page = this._value.page - 1;
+      //更新到组件的内部状态中
       this._value = { page, pageSize: this._value.pageSize };
+      //每当 page 的值发生变化时，组件会触发 this.$emit("change");
       this.$emit("change");
     },
 
     /**
-     * 下一页
+     * 下一页 它会将当前页码加 1
      */
     handleNext() {
       const page = this._value.page + 1;

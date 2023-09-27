@@ -174,6 +174,7 @@ export default {
      */
     submitForm() {
       this.$refs.formRef.validate((valid) => {
+        //items包含用户购物车中的所有商品信息以便在提交订单时发送给后端
         if (valid) {
           const items = this.carts.map((x) => {
             return { number: x.number, productId: x.productId };
@@ -181,10 +182,10 @@ export default {
 
           this.form.items = JSON.stringify(items);
           this.form.totalPrice = this.totalPrice;
-
+          //旦订单成功提交，会触发 then 回调函数。在这个回调函数中，会显示一个成功的消息提示
           ISubmitOrder(this.form).then(() => {
             this.$message({
-              message: "提交成功",
+              message: "Submit Successful",
               type: "success",
             });
           });

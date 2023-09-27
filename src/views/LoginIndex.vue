@@ -98,7 +98,6 @@ export default {
       IToken().then((res) => {
         localStorage.setItem("token", res);
         this.isLoggedIn = true; // 登录成功后设置登录状态
-        console.log("abc");
       });
       // 模拟登录延迟，您可以根据实际情况调整
     },

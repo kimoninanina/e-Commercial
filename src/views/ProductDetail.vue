@@ -15,13 +15,13 @@
           {{ data.describe }}
         </p>
 
-        <h5>Size</h5>
+        <h2>Size</h2>
         <ButtonGroup
           class="button-group"
           v-model="form.sizeActive"
           :options="data.size"
         />
-        <h5>Color</h5>
+        <h2>Color</h2>
 
         <div class="info__colors">
           <button
@@ -181,7 +181,7 @@ export default {
         text-align: left;
       }
 
-      h5 {
+      h2 {
         margin-top: 0.75rem;
         margin-bottom: 0.5rem;
         color: #9f9f9f;

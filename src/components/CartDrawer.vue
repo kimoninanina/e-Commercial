@@ -1,3 +1,5 @@
+// Element UI 中的一个组件
+
 <template>
   <el-drawer
     :visible.sync="drawer"
@@ -48,14 +50,15 @@ import { mapMutations } from "vuex";
 
 export default {
   computed: {
+//使用 mapState 来将购物车的状态数据 data 映射到组件的计算属性中，这样可以直接在模板中使用 data 访问购物车的状态数据。
     ...mapState({
       data: (state) => state.cart,
     }),
-
+  //使用 mapGetters 来将 totalPrice 映射到计算属性中，totalPrice 计算了购物车中所有商品的总价。
     ...mapGetters({
       totalPrice: "cart/totalPrice",
     }),
-
+//计算属性 subtotal 计算了购物车中所有商品的小计总价，这个小计价格不依赖于 Vuex 的 getters。
     subtotal() {
       return this.data.items.reduce((acc, cur) => acc + cur.price * cur.num, 0);
     },

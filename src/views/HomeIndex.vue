@@ -94,6 +94,7 @@ export default {
       this.isLoading = true;
       this.cond.page++;
 
+      //函数用于向服务器请求商品，cond数据包含了分页信息,res包含了从服务器返回的商品数据,追加到 this.products.data数组中
       IOurProducts(this.cond)
         .then((res) => {
           this.products.data.push(...res.data);

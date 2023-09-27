@@ -27,6 +27,7 @@ const store = new Vuex.Store({
           state.show = payload;
         },
         addCart(state, payload) {
+      //它会检查购物车中是否已存在相同的商品，如果存在，则更新商品的数量，如果不存在，则将商品信息添加到购物车中。
           const findIndex = state.items.findIndex(
             (item) => item.productId === payload.productId
           );
@@ -35,7 +36,8 @@ const store = new Vuex.Store({
           }
 
           state.items.push(payload);
-
+          
+          //将购物车中的商品信息保存到浏览器的本地存储中，以便在页面刷新或重新加载时能够保留购物车的内容。
           localStorage.setItem("carts", JSON.stringify(state.items));
         },
 
